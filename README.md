@@ -1,2 +1,2 @@
-# craigbilner.github.io
+# blog thing
 a thing where I put stuff
