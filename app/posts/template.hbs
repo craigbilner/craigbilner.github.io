@@ -1,4 +1,15 @@
 These are the posts:
 {{#each model as |post|}}
-  <div>{{post.title}}</div>
+  <div>
+    {{post.title}}
+  </div>
+  <div>
+    {{post.content}}
+  </div>
+  <div>
+    {{post.created}}
+  </div>
+  <div>
+    {{post.tags}}
+  </div>
 {{/each}}
