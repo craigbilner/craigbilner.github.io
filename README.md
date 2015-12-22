@@ -1,2 +1,2 @@
 # blog thing
-a thing where I put stuff
+a thing where I put stuff with ember
