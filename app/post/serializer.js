@@ -1,5 +1,17 @@
 import DS from 'ember-data';
 
+const metaFilter = key => metaField => {
+  return metaField.key === key;
+};
+
+function getSummary(metaFields) {
+  return metaFields.filter(metaFilter('summary'))[0].value;
+}
+
+function getTags(metaFields) {
+  return metaFields.filter(metaFilter('tags'))[0].value;
+}
+
 export default DS.RESTSerializer.extend({
   normalizeFindAllResponse(store, primaryModelClass, { objects }, id, requestType) {
     const response = {
@@ -11,7 +23,8 @@ export default DS.RESTSerializer.extend({
         modified: new Date(post.modified),
         slug: post.slug,
         title: post.title,
-        tags: post.metafields[0].value
+        summary: getSummary(post.metafields),
+        tags: getTags(post.metafields)
       }))
     };
 

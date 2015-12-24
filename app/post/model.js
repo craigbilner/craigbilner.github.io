@@ -6,5 +6,6 @@ export default DS.Model.extend({
   modified: DS.attr('date'),
   slug: DS.attr('string'),
   title: DS.attr('string'),
+  summary: DS.attr('string'),
   tags: DS.attr('string')
 });
