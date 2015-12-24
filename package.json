@@ -1,8 +1,8 @@
 {
   "name": "blog",
-  "version": "0.0.0",
-  "description": "Small description for blog goes here",
-  "private": true,
+  "version": "0.0.1",
+  "description": "A blog where I write stuff and learn Ember",
+  "private": false,
   "directories": {
     "doc": "doc",
     "test": "tests"
