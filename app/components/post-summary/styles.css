@@ -1,8 +1,8 @@
-.component {
+& {
 	padding: 1rem 0.5rem;    
     border-bottom: 1px solid #DAC2C2;
 }
 
-.summary {
-	
+.summary p:after {
+	content: "...";
 }

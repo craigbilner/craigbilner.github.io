@@ -1,4 +1,4 @@
-<div class="component">
+<div>
   <h2>
     {{post.title}}
   </h2>
@@ -10,7 +10,7 @@
       {{post.created}}
     </div>
     <div class="tags">
-      {{post.tags}}
+      {{#post-tags tags=post.tags}}{{/post-tags}}
     </div>
   </section>
 </div>
