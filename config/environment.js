@@ -7,7 +7,7 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
-      
+      ENABLE_DS_FILTER: true
     },
 
     APP: {
