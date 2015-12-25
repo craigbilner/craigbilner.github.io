@@ -7,7 +7,7 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
-      ENABLE_ALL_FEATURES: true
+      
     },
 
     APP: {
