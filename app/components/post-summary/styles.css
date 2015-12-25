@@ -3,6 +3,10 @@
     border-bottom: 1px solid #DAC2C2;
 }
 
+.summary {
+	margin: 1rem 0;
+}
+
 .summary p:after {
 	content: "...";
 }

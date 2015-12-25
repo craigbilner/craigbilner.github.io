@@ -1,0 +1,44 @@
+& {
+	padding: 0.5rem;
+	background-color: #105410;	
+}
+
+h2, code, div, span {
+	color: white;
+}
+
+code {
+	font-size: 1rem;	
+}
+
+.func-content {
+	margin-left: 2rem;
+}
+
+.func {
+	color: #F971F9;
+}
+
+.args {
+	color: orange;
+}
+
+.keyword {
+	color: #FFC6C6;
+}
+
+.operator {
+	color: yellow;
+}
+
+.var {
+	color: orange;
+}
+
+h1 {
+	margin: 1rem 0;
+}
+
+h2 {
+	font-size: 0.75rem;
+}
