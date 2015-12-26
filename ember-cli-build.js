@@ -20,5 +20,8 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+  app.import('vendor/Museo_Slab_500_2-webfont.woff');
+  app.import('vendor/Museo_Slab_500_2-webfont.woff2');
+
   return app.toTree();
 };
