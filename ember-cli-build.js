@@ -1,7 +1,6 @@
 /*jshint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var Funnel = require('broccoli-funnel');
 
 module.exports = function (defaults) {
   var app = new EmberApp(defaults, {});
@@ -22,11 +21,5 @@ module.exports = function (defaults) {
   app.import('vendor/Museo_Slab_500_2-webfont.woff');
   app.import('vendor/Museo_Slab_500_2-webfont.woff2');
 
-  var extraAssets = new Funnel('service-workers', {
-    srcDir: '/',
-    include: ['**/*.js'],
-    destDir: '/'
-  });
-
-  return app.toTree(extraAssets);
+  return app.toTree();
 };

@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
     modulePrefix: 'blog',
     environment: environment,
@@ -9,7 +9,6 @@ module.exports = function(environment) {
     EmberENV: {
       ENABLE_DS_FILTER: true
     },
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -22,6 +21,15 @@ module.exports = function(environment) {
       'img-src': "'self'",
       'style-src': "'self'",
       'media-src': "'self'"
+    },
+    serviceWorker: {
+      enabled: true,
+      includeRegistration: false,
+      serviceWorkerFile: 'sw.js',
+      skipWaiting: false,
+      excludePaths: [
+        new RegExp(/.\.map$/)
+      ]
     }
   };
 

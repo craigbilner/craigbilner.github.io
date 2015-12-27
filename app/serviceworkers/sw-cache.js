@@ -28,11 +28,13 @@ function noCacheFail () {
 }
 
 this.addEventListener('fetch', function (event) {
-  console.info('fetching', event.request.url);
-  event.respondWith(
-    caches
-      .match(event.request)
-      .catch(noCache(event))
-      .catch(noCacheFail)
-  );
+  if (event.request.url === 'https://api.cosmicjs.com/v1/blog-cb/objects') {
+    console.info('fetching', event.request.url);
+    event.respondWith(
+      caches
+        .match(event.request)
+        .catch(noCache(event))
+        .catch(noCacheFail)
+    );
+  }
 });
