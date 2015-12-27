@@ -17,7 +17,7 @@ module.exports = function (environment) {
       'default-src': "'none'",
       'script-src': "'self' https://cdn.polyfill.io",
       'font-src': "'self'",
-      'connect-src': "'self' https://api.cosmicjs.com",
+      'connect-src': "'self' https://api.cosmicjs.com https://cdn.polyfill.io",
       'img-src': "'self'",
       'style-src': "'self'",
       'media-src': "'self'"
