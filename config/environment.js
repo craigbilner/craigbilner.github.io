@@ -16,7 +16,7 @@ module.exports = function(environment) {
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self'",
+      'script-src': "'self' https://cdn.polyfill.io",
       'font-src': "'self'",
       'connect-src': "'self' https://api.cosmicjs.com",
       'img-src': "'self'",
