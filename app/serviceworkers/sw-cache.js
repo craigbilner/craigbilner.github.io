@@ -33,6 +33,10 @@ this.addEventListener('fetch', function (event) {
     event.respondWith(
       caches
         .match(event.request)
+        .then(function(response){
+          console.log('response', event.request.url, response);
+          return response;
+        })
         .catch(noCache(event))
         .catch(noCacheFail)
     );
