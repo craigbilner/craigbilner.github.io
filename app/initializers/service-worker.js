@@ -1,6 +1,6 @@
 export function initialize () {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js', { scope: './' })
+    navigator.serviceWorker.register('./sw.js')
       .catch(function (error) {
         console.error('Error registering service worker:' + error);
       });
