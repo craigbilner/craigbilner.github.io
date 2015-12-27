@@ -1,6 +1,6 @@
 export function initialize () {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
+    navigator.serviceWorker.register('./sw-cache.js')
       .catch(function (error) {
         console.error('Error registering service worker:' + error);
       });

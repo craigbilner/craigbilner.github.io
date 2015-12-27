@@ -48,17 +48,6 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.locationType = 'hash';
-    ENV.serviceWorker = {
-      includeRegistration: false,
-      serviceWorkerFile: 'sw.js',
-      fallback: [
-        '/offline.html'
-      ],
-      skipWaiting: false,
-      excludePaths: [
-        new RegExp(/.\.map$/)
-      ]
-    };
   }
 
   return ENV;
