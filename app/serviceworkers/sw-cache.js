@@ -9,9 +9,6 @@ function cacheOpen (event, response) {
   return function (cache) {
     cache
       .put(event.request, response.clone())
-      .then(function () {
-        console.info('successfully cached', event.request.url, response);
-      })
       .catch(function (err) {
         console.error('cache error', err);
       });
@@ -21,7 +18,7 @@ function cacheOpen (event, response) {
 
 function fetchSuccess (event) {
   return function (response) {
-    console.info('fetch success', event.request.url);
+    // console.info('fetch success', event.request.url);
     return caches
       .open(CURRENT_VERSION)
       .then(cacheOpen(event, response));
