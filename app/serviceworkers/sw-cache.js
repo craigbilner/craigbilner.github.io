@@ -1,4 +1,8 @@
 var CURRENT_VERSION = 'v2';
+var CACHE_URLS = {
+  'https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch': true,
+  'https://api.cosmicjs.com/v1/blog-cb/objects': true
+};
 
 function cacheOpen (event, response) {
   return function (cache) {
@@ -36,11 +40,14 @@ function checkCacheResponse (response) {
     console.info('no cache response');
     throw new Error();
   }
-  console.info('cache response', response);
+  // console.info('cache response', response);
   return response;
 }
 
 this.addEventListener('fetch', function (event) {
+  if (!CACHE_URLS[event.request.url]) return;
+
+  // console.info('fetch', event.request.url);
   event.respondWith(
     caches
       .match(event.request)
