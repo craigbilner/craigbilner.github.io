@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 
-const URL = 'https://api.cosmicjs.com/v1/blog-cb/objects';
+const POSTS_URL = 'https://api.cosmicjs.com/v1/blog-cb/objects';
+const BLOG_URL = POSTS_URL + '?bustcache=true';
 
 function handleFetch (response) {
   const responseClone = response.clone();
@@ -17,7 +18,12 @@ function handleError (error) {
 
 export default DS.JSONAPIAdapter.extend({
   ajax() {
-    return fetch(URL)
+    if ('serviceWorker' in navigator) {
+      setTimeout(() => {
+        fetch(BLOG_URL);
+      }, 0);
+    }
+    return fetch(POSTS_URL)
       .then(handleFetch)
       .catch(handleError);
   }

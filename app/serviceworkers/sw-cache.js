@@ -1,7 +1,8 @@
 var CURRENT_VERSION = 'v2';
 var CACHE_URLS = {
-  'https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch': true,
-  'https://api.cosmicjs.com/v1/blog-cb/objects': true
+  'https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch': 1,
+  'https://api.cosmicjs.com/v1/blog-cb/objects': 1,
+  'https://api.cosmicjs.com/v1/blog-cb/objects?bustcache=true': 2
 };
 
 function cacheOpen (event, response) {
@@ -45,18 +46,26 @@ function checkCacheResponse (response) {
 }
 
 this.addEventListener('fetch', function (event) {
-  if (!CACHE_URLS[event.request.url]) return;
+  var cacheType = CACHE_URLS[event.request.url];
+  if (!cacheType) return;
 
   // console.info('fetch', event.request.url);
-  event.respondWith(
-    caches
-      .match(event.request)
-      .then(checkCacheResponse)
-      .catch(noCache(event))
-      .catch(function noCacheFail () {
-        console.error('no cache fail');
-      })
-  );
+  if (cacheType === 1) {
+    event.respondWith(
+      caches
+        .match(event.request)
+        .then(checkCacheResponse)
+        .catch(noCache(event))
+        .catch(function noCacheFail () {
+          console.error('no cache fail');
+        })
+    );
+  } else {
+    var bustRequest = new Request('https://api.cosmicjs.com/v1/blog-cb/objects');
+    fetch(bustRequest).then(fetchSuccess({
+      request: bustRequest
+    }));
+  }
 });
 
 this.addEventListener('activate', function (event) {
