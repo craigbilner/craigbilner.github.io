@@ -11,7 +11,7 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember test",
-    "deploy": "ember build --environment=production && cp -a ./dist/. ./"
+    "deploy": "ember build --environment=production && rm -rf sw* && rm -rf assets && cp -a ./dist/. ./"
   },
   "repository": "",
   "engines": {

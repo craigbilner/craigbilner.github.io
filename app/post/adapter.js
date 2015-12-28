@@ -3,8 +3,9 @@ import DS from 'ember-data';
 const URL = 'https://api.cosmicjs.com/v1/blog-cb/objects';
 
 function handleFetch (response) {
-  if (response.ok) {
-    return response.json().then(jsonResponse => jsonResponse);
+  const responseClone = response.clone();
+  if (responseClone.ok) {
+    return responseClone.json().then(jsonResponse => jsonResponse);
   } else {
     console.error('Network response was not ok.');
   }

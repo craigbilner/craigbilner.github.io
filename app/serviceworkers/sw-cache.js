@@ -1,4 +1,4 @@
-var CURRENT_VERSION = 'v1';
+var CURRENT_VERSION = 'v2';
 
 function cacheOpen (event, response) {
   return function (cache) {
