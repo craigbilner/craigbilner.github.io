@@ -2,13 +2,21 @@ var CURRENT_VERSION = 'v2';
 
 function cacheOpen (event, response) {
   return function (cache) {
-    cache.put(event.request, response.clone());
+    cache
+      .put(event.request, response.clone())
+      .then(function () {
+        console.info('successfully cached');
+      })
+      .catch(function (err) {
+        console.error('cache error', err);
+      });
     return response;
   }
 }
 
 function fetchSuccess (event) {
   return function (response) {
+    console.info('fetch success');
     return caches
       .open(CURRENT_VERSION)
       .then(cacheOpen(event, response));
@@ -17,6 +25,7 @@ function fetchSuccess (event) {
 
 function noCache (event) {
   return function () {
+    console.info('no cache', event.request.url);
     return fetch(event.request)
       .then(fetchSuccess(event));
   }
@@ -24,8 +33,10 @@ function noCache (event) {
 
 function checkCacheResponse (response) {
   if (!response) {
+    console.info('no cache response');
     throw new Error();
   }
+  console.info('cache response', response);
   return response;
 }
 
