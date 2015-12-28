@@ -1,12 +1,16 @@
 .post-summary {
-	padding: 1rem 0.5rem;    
-    border-bottom: 1px solid #DAC2C2;
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid #DAC2C2;
 
-	.summary {
-		margin: 1rem 0;
-	}
+  .summary, .no-summary {
+    margin: 1rem 0;
+  }
 
-	.summary p:after {
-		content: "...";
-	}
+  .no-summary {
+    font-style: italic;
+  }
+
+  .summary p:after {
+    content: "...";
+  }
 }

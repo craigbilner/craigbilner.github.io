@@ -1,16 +1,22 @@
 <div class="post-summary">
-  <h2>
-    {{#link-to "post" post.slug}}{{post.title}}{{/link-to}}
-  </h2>
-  <section>
-    <div class="summary">
-      {{{post.summary}}}
-    </div>
-    <div class="created">
-      {{post.created}}
-    </div>
-    <div class="tags">
-      {{#post-tags tags=post.tags}}{{/post-tags}}
-    </div>
-  </section>
+    <h2>
+      {{#link-to "post" post.slug}}{{post.title}}{{/link-to}}
+    </h2>
+    <section>
+      {{#if post.summary.length}}
+          <div class="summary">
+            {{{post.summary}}}
+          </div>
+      {{else}}
+          <div class="no-summary">
+            So...didn't write a summary for this one...surprise!
+          </div>
+      {{/if}}
+        <div class="created">
+          {{post.created}}
+        </div>
+        <div class="tags">
+          {{#post-tags tags=post.tags}}{{/post-tags}}
+        </div>
+    </section>
 </div>

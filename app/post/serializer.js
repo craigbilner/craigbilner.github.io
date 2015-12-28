@@ -4,11 +4,13 @@ const metaFilter = key => metaField => {
   return metaField.key === key;
 };
 
-function getSummary(metaFields) {
+function getSummary (metaFields) {
+  if (!metaFields || !metaFields.length) return [];
   return metaFields.filter(metaFilter('summary'))[0].value;
 }
 
-function getTags(metaFields) {
+function getTags (metaFields) {
+  if (!metaFields || !metaFields.length) return [];
   return metaFields.filter(metaFilter('tags'))[0].value;
 }
 
