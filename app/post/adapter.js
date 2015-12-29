@@ -18,7 +18,7 @@ function handleError (error) {
 
 export default DS.JSONAPIAdapter.extend({
   ajax() {
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && navigator.onLine) {
       setTimeout(() => {
         fetch(BLOG_URL);
       }, 0);

@@ -57,7 +57,7 @@ this.addEventListener('fetch', function (event) {
           console.error('no cache fail');
         })
     );
-  } else {
+  } else if (navigator.onLine) {
     var bustRequest = new Request('https://api.cosmicjs.com/v1/blog-cb/objects');
     fetch(bustRequest).then(fetchSuccess({
       request: bustRequest
