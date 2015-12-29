@@ -1,6 +1,14 @@
 .post-summary {
   padding: 1rem 0.5rem;
-  border-bottom: 1px solid #DAC2C2;
+  border-bottom: 1px solid $colour-grey;
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .created {
+    color: $colour-grey-text;
+  }
 
   .summary, .no-summary {
     margin: 1rem 0;

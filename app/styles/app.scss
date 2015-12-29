@@ -1,6 +1,8 @@
+@import "colours";
+
 * {
 	font-family: ms500;
-	color: #105410;
+	color: $colour-primary;
 	margin: 0;
 	padding: 0;
 }
@@ -23,10 +25,4 @@ h2 {
 
 @import "app/components/post-article/style";
 @import "pods";
-
-
-
-
-
-
 
