@@ -1,27 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  didInitAttrs(){
-    console.log('didInitAttrs')
-    this.sendAction('checkForPost');
-  },
-  didReceiveAttrs(){
-    console.log('didReceiveAttrs')
-  },
-  willRender(){
-    console.log('willRender')
-  },
-  didInsertElement(){
-    console.log('didInsertElement')
-  },
-  didRender(){
-    console.log('didRender')
-    this.sendAction('checkForPost');
-  },
-  willUpdate(){
-    console.log('willUpdate')
-  },
-  didUpdate(){
-    console.log('didUpdate')
+  dorch: Ember.inject.service('data-orchestrator'),
+  didReceiveAttrs() {
+    this
+      .get('dorch')
+      .fetchAndPush(this.attrs.model.value.slug)
+      .catch(() => {
+        this.set('text', 'So I\'ve had a rummage around and I don\'t appear to have this post, sorry :-(');
+      });
   }
 });
