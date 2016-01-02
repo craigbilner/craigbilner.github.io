@@ -7,5 +7,6 @@ export default DS.Model.extend({
   slug: DS.attr('string'),
   title: DS.attr('string'),
   summary: DS.attr('string'),
-  tags: DS.attr('string')
+  tags: DS.attr('string'),
+  isSelected: DS.attr('boolean')
 });

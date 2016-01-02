@@ -14,22 +14,26 @@ function getTags (metaFields) {
   return metaFields.filter(metaFilter('tags'))[0].value;
 }
 
-export default DS.RESTSerializer.extend({
-  normalizeFindAllResponse(store, primaryModelClass, { objects }, id, requestType) {
-    const response = {
-      posts: objects.map(post => ({
-        type: 'post',
-        id: post._id,
-        content: post.content,
-        created: post.created ? new Date(post.created).toISOString() : null,
-        modified: post.modified ? new Date(post.modified).toISOString() : null,
-        slug: post.slug,
-        title: post.title,
-        summary: getSummary(post.metafields),
-        tags: getTags(post.metafields)
-      }))
-    };
+function normalize(store, primaryModelClass, data, id, requestType) {
+  const response = {
+    posts: data.map(post => ({
+      type: 'post',
+      id: post._id,
+      content: post.content,
+      created: post.created ? new Date(post.created).toISOString() : null,
+      modified: post.modified ? new Date(post.modified).toISOString() : null,
+      slug: post.slug,
+      title: post.title,
+      summary: getSummary(post.metafields),
+      tags: getTags(post.metafields),
+      isSelected: post.isSelected
+    }))
+  };
 
-    return this._super(store, primaryModelClass, response, id, requestType);
-  }
+  return this._super(store, primaryModelClass, response, id, requestType);
+}
+
+export default DS.RESTSerializer.extend({
+  normalizeQueryResponse: normalize,
+  normalizeFindAllResponse: normalize
 });

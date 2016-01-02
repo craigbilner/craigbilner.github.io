@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   dorch: Ember.inject.service('data-orchestrator'),
   didReceiveAttrs() {
+    this.set('text', 'no post here');
+    return;
     this
       .get('dorch')
       .fetchAndPush(this.attrs.model.value.slug)

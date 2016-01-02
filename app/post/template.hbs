@@ -1,7 +1,1 @@
-{{#if model.length}}
-  {{#each model as |post|}}
-    {{#post-article post=post}}{{/post-article}}
-  {{/each}}
-{{else}}
-    {{no-post model=model}}
-{{/if}}
+{{#post-controller model=model}}{{/post-controller}}
