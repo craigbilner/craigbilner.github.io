@@ -1,0 +1,8 @@
+.posts-list {
+  @media(min-width: 550px) {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}

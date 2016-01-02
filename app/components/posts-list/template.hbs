@@ -1,4 +1,6 @@
-{{#each summaryPosts as |post|}}
-  {{#post-summary post=post}}{{/post-summary}}
-{{/each}}
+<div class="posts-list">
+  {{#each summaryPosts as |post|}}
+    {{#post-summary post=post}}{{/post-summary}}
+  {{/each}}
+</div>
 {{#each posts as |post|}}{{/each}}

@@ -2,6 +2,11 @@
   padding: 1rem 0.5rem;
   border-bottom: 1px solid $colour-grey;
 
+  @media(min-width: 550px) {
+    max-width: 16rem;
+    border-bottom: none;
+  }
+
   h2 {
     margin-bottom: 0.5rem;
   }
