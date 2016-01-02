@@ -1,20 +1,37 @@
 import Ember from 'ember';
 
 let dataSubscribers = [];
-let routeSubscribers = [];
 const BLOG_URL = 'https://api.cosmicjs.com/v1/blog-cb/objects';
 const BUST_CACHE = '?bustcache=true';
 let isBusting = false;
+
+const metaFilter = key => metaField => {
+  return metaField.key === key;
+};
+
+function getSummary (metaFields) {
+  if (!metaFields || !metaFields.length) return [];
+  return metaFields.filter(metaFilter('summary'))[0].value;
+}
+
+function getTags (metaFields) {
+  if (!metaFields || !metaFields.length) return [];
+  return metaFields.filter(metaFilter('tags'))[0].value;
+}
+
+const reduceSelectedPost = slug => (posts, post) => {
+  post.isSelected = post.slug === slug;
+  posts.push(post);
+  return posts;
+};
 
 const handleFetch = slug => response => {
   const responseClone = response.clone();
   if (responseClone.ok) {
     return responseClone.json().then(jsonResponse => {
-      return jsonResponse.objects.reduce((posts, post) => {
-        post.isSelected = post.slug === slug;
-        posts.push(post);
-        return posts;
-      }, []);
+      return jsonResponse
+        .objects
+        .reduce(reduceSelectedPost(slug), []);
     });
   } else {
     throw new Error('Network response was not ok.');
@@ -26,8 +43,20 @@ function handleError (error) {
 }
 
 export default Ember.Service.extend({
-  subscribe(func) {
-    routeSubscribers.push(func);
+  store: Ember.inject.service('store'),
+  normalize(data) {
+    return data.map(post => ({
+      type: 'post',
+      id: post._id,
+      content: post.content,
+      created: post.created ? new Date(post.created).toISOString() : null,
+      modified: post.modified ? new Date(post.modified).toISOString() : null,
+      slug: post.slug,
+      title: post.title,
+      summary: getSummary(post.metafields),
+      tags: getTags(post.metafields),
+      isSelected: post.isSelected
+    }));
   },
   fetch(slug) {
     if ('serviceWorker' in navigator && navigator.onLine) {
@@ -37,9 +66,8 @@ export default Ember.Service.extend({
           .then(handleFetch(slug))
           .then(json => {
             isBusting = false;
-            dataSubscribers.map(subscriber => {
-              subscriber(json.objects);
-            });
+            this.updateStore(json);
+            dataSubscribers.map(subscriber => subscriber(json));
             dataSubscribers = [];
           })
           .catch(handleError);
@@ -49,20 +77,20 @@ export default Ember.Service.extend({
       .then(handleFetch(slug))
       .catch(handleError);
   },
-  fetchAndPush(slug) {
-    return new Promise((res, rej) => {
+  updateStore(posts) {
+    this.get('store').pushPayload({
+      data: this.normalize(posts)
+    });
+  },
+  fetchAndPush() {
+    return new Promise((res) => {
       if (isBusting) {
-        dataSubscribers.push(function (posts) {
-          console.log('sub', posts);
-        });
+        dataSubscribers.push(res);
       } else {
         fetch(`${BLOG_URL}${BUST_CACHE}`)
-          .then(handleFetch(slug))
-          .then(function (data) {
-            return getPost(slug, data)
-              .then(updateStore);
-          })
-          .catch(rej);
+          .then(handleFetch())
+          .then(res)
+          .catch(handleError);
       }
     });
   }

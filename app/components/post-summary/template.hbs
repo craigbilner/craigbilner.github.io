@@ -1,7 +1,7 @@
 <div>
     <section class="post-summary">
         <h2>
-          {{#link-to "post" post.slug}}{{post.title}}{{/link-to}}
+          {{#link-to "post" post}}{{post.title}}{{/link-to}}
         </h2>
         <div class="created">
           {{format-date post.created}}
