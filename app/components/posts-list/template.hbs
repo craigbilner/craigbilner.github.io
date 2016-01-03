@@ -1,6 +1,11 @@
 <div class="posts-list">
-  {{#each summaryPosts as |post|}}
-    {{#post-summary post=post}}{{/post-summary}}
-  {{/each}}
+    <div class="posts">
+      {{#each summaryPosts as |post|}}
+        {{#post-summary post=post}}{{/post-summary}}
+      {{/each}}
+    </div>
+    <aside class="filter-panel-container">
+        {{#filter-panel}}{{/filter-panel}}
+    </aside>
 </div>
 {{#each posts as |post|}}{{/each}}

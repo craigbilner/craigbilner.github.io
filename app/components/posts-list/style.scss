@@ -1,8 +1,22 @@
 .posts-list {
-  @media(min-width: 550px) {
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-flow: row;
+
+  .posts {
+    @media(min-width: 550px) {
+      display: flex;
+      flex-flow: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
+
+  .filter-panel-container {
+    display: none;
+    border-left: 1px solid $colour-primary;
+
+    @media(min-width: 1000px) {
+      display: block;
+    }
   }
 }

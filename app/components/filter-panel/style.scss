@@ -1,0 +1,65 @@
+.filter-panel {
+  width: 20rem;
+  padding: 1rem;
+
+  * {
+    color: $colour-secondary;
+  }
+
+  .head {
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    padding: 0.5rem;
+    background-color: $colour-secondary;
+  }
+
+  h3 {
+    color: white;
+  }
+
+  .filters {
+    padding: 1rem;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .filter {
+    display: flex;
+  }
+
+  .filter.input {
+    flex-flow: column;
+
+    label {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .filter.checkbox {
+    flex-flow: row;
+    align-items: center;
+    height: 1.5rem;
+  }
+
+  input[type=text] {
+    height: 2rem;
+    padding: 0.25rem;
+    font-size: 1.25rem;
+    border: 1px solid $colour-grey;
+    outline: none;
+
+    &:active, &:focus {
+      border: 1px solid $colour-secondary;
+    }
+  }
+
+  ::-webkit-input-placeholder {
+    color: $colour-grey-text-light;
+  }
+
+  input[type=checkbox] {
+    margin-right: 1rem;
+  }
+}
