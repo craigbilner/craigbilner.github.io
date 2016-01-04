@@ -4,26 +4,29 @@ let subscribers = [];
 const blogFilters = {};
 
 function keywordMatch (filters, content) {
-  return filters['filter-keywords'] && ~content.indexOf(filters['filter-keywords']);
+  if (!filters['filter-keywords']) return true;
+  return ~content.indexOf(filters['filter-keywords']);
 }
 
 function lengthMatch (filters, content) {
+  if (!(filters['filter-short'] || filters['filter-medium'] || filters['filter-long'])) return true;
   return (filters['filter-short'] && content.length < 1700)
     || (filters['filter-medium'] && content.length >= 1700 && content.length < 4000)
     || (filters['filter-long'] && content.length >= 4000);
 }
 
 function categoryMatch (filters, category) {
+  if (!(filters['filter-quick'] || filters['filter-code'] || filters['filter-opinion'])) return true;
   return filters['filter-quick'] && category === 'qt'
     || filters['filter-code'] && category === 'c'
     || filters['filter-opinion'] && category === 'o';
 }
 
 const filterPosts = filters => item => {
-  return !Object.keys(filters).length
-    || keywordMatch(filters, item.get('content'))
-    || lengthMatch(filters, item.get('content'))
-    || categoryMatch(filters, item.get('category'));
+  if (!Object.keys(filters).length) return true;
+  return keywordMatch(filters, item.get('content'))
+    && lengthMatch(filters, item.get('content'))
+    && categoryMatch(filters, item.get('category'));
 };
 
 export default Ember.Service.extend({
