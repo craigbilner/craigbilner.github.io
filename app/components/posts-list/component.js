@@ -1,27 +1,32 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  dataStore: Ember.inject.service('data-store'),
   filterPosts: Ember.inject.service('filter-posts'),
   didInitAttrs() {
-    this.filterFunc = this.filterChanged.bind(this);
-    this.get('filterPosts').subscribe(this.filterFunc);
+    this.setPosts = this.setPosts.bind(this);
+    this.get('dataStore').subscribe(this.setPosts).then(posts => {
+      this.setPosts(posts);
+    });
+
+    this.filterChanged = this.filterChanged.bind(this);
+    this.get('filterPosts').subscribe(this.filterChanged);
+  },
+  setPosts(posts) {
+    this.set('posts', posts);
+    this.filterChanged();
+  },
+  setFilteredPosts(posts) {
+    this.set('filteredPosts', posts.toArray().sort(this.sortPosts));
   },
   filterChanged() {
-    this.setModel(this.get('filterPosts').filter(this.posts.toArray()).sort(this.sortPosts));
+    this.setFilteredPosts(this.get('filterPosts').filter(this.posts));
   },
   sortPosts(prev, next) {
     return new Date(next.get('created')) - new Date(prev.get('created'));
   },
-  setModel(posts) {
-    this.set('summaryPosts', posts);
-  },
-  updateModel() {
-    this.setModel(this.posts.toArray().sort(this.sortPosts));
-  },
-  didReceiveAttrs() {
-    this.updateModel();
-  },
-  willDestroy() {
-    this.get('filterPosts').unsubscribe(this.filterFunc);
+  willDestroy(){
+    this.get('dataStore').unsubscribe(this.setPosts);
+    this.get('filterPosts').unsubscribe(this.filterChanged);
   }
 });

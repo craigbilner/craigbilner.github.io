@@ -28,19 +28,11 @@ function getCategory (metaFields) {
   return getMeta(metaFields, 'category');
 }
 
-const reduceSelectedPost = slug => (posts, post) => {
-  post.isSelected = post.slug === slug;
-  posts.push(post);
-  return posts;
-};
-
-const handleFetch = slug => response => {
+function handleFetch (response) {
   const responseClone = response.clone();
   if (responseClone.ok) {
     return responseClone.json().then(jsonResponse => {
-      return jsonResponse
-        .objects
-        .reduce(reduceSelectedPost(slug), []);
+      return jsonResponse.objects;
     });
   } else {
     throw new Error('Network response was not ok.');
@@ -52,7 +44,7 @@ function handleError (error) {
 }
 
 export default Ember.Service.extend({
-  store: Ember.inject.service('store'),
+  dataStore: Ember.inject.service('data-store'),
   normalize(data) {
     return data.map(post => ({
       type: 'post',
@@ -65,15 +57,15 @@ export default Ember.Service.extend({
       summary: getSummary(post.metafields),
       tags: getTags(post.metafields),
       category: getCategory(post.metafields),
-      isSelected: post.isSelected
+      isSelected: false
     }));
   },
-  fetch(slug) {
+  fetch() {
     if ('serviceWorker' in navigator && navigator.onLine) {
       setTimeout(() => {
         isBusting = true;
         fetch(`${BLOG_URL}${BUST_CACHE}`)
-          .then(handleFetch(slug))
+          .then(handleFetch)
           .then(json => {
             isBusting = false;
             this.updateStore(json);
@@ -84,11 +76,11 @@ export default Ember.Service.extend({
       }, 0);
     }
     return fetch(BLOG_URL)
-      .then(handleFetch(slug))
+      .then(handleFetch)
       .catch(handleError);
   },
   updateStore(posts) {
-    this.get('store').pushPayload({
+    this.get('dataStore').pushPayload({
       data: this.normalize(posts)
     });
   },
@@ -98,7 +90,7 @@ export default Ember.Service.extend({
         dataSubscribers.push(res);
       } else {
         fetch(`${BLOG_URL}${BUST_CACHE}`)
-          .then(handleFetch())
+          .then(handleFetch)
           .then(res)
           .catch(handleError);
       }

@@ -1,6 +1,6 @@
 <div class="posts-list">
     <div class="posts">
-      {{#each summaryPosts as |post|}}
+      {{#each filteredPosts as |post|}}
         {{#post-summary post=post}}{{/post-summary}}
       {{/each}}
     </div>
@@ -8,4 +8,3 @@
         {{#filter-panel}}{{/filter-panel}}
     </aside>
 </div>
-{{#each posts as |post|}}{{/each}}

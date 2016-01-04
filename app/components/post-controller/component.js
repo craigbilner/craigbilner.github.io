@@ -1,23 +1,25 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  updateModel() {
-    let selectedPost;
-
-    if (this.model.length) {
-      selectedPost = this.model.filter(post => {
-        return post.get('isSelected');
-      }).objectAt(0);
-    } else {
-      selectedPost = this.model;
-    }
-
-    this.set('selectedPost', selectedPost);
-  },
+  dataStore: Ember.inject.service('data-store'),
   didReceiveAttrs() {
-    this.updateModel();
+    if (typeof(this.model) === 'string') {
+      this.addPost = this.addPost.bind(this);
+      this.get('dataStore').subscribe(this.addPost);
+    } else if (this.model) {
+      this.set('selectedPost', this.model);
+    }
   },
-  willUpdate() {
-    this.updateModel();
+  addPost(posts) {
+    const selectedPost = posts.filter(post => {
+      return post.get('slug') === this.model;
+    }).objectAt(0);
+
+    if (selectedPost) {
+      this.set('selectedPost', selectedPost);
+    }
+  },
+  willDestroy() {
+    this.get('dataStore').unsubscribe(this.addPost);
   }
 });
