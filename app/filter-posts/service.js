@@ -1,23 +1,22 @@
 import Ember from 'ember';
 
-const subscribers = [];
+let subscribers = [];
 const blogFilters = {};
 
 function keywordMatch (filters, content) {
-  return false;
+  return filters['filter-keywords'] && ~content.indexOf(filters['filter-keywords']);
 }
 
 function lengthMatch (filters, content) {
-  return false;
+  return (filters['filter-short'] && content.length < 1700)
+    || (filters['filter-medium'] && content.length >= 1700 && content.length < 4000)
+    || (filters['filter-long'] && content.length >= 4000);
 }
 
 function categoryMatch (filters, category) {
-  const isMatch =
-    filters['filter-quick'] && category === 'qt'
+  return filters['filter-quick'] && category === 'qt'
     || filters['filter-code'] && category === 'c'
     || filters['filter-opinion'] && category === 'o';
-
-  return isMatch;
 }
 
 const filterPosts = filters => item => {
@@ -30,6 +29,14 @@ const filterPosts = filters => item => {
 export default Ember.Service.extend({
   subscribe(func) {
     subscribers.push(func);
+  },
+  unsubscribe(func) {
+    subscribers = subscribers.reduce((arr, item) => {
+      if (item !== func) {
+        arr.push(item);
+      }
+      return arr;
+    }, []);
   },
   push({ key, value }) {
     if (value) {

@@ -3,7 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   filterPosts: Ember.inject.service('filter-posts'),
   didInitAttrs() {
-    this.get('filterPosts').subscribe(this.filterChanged.bind(this));
+    this.filterFunc = this.filterChanged.bind(this);
+    this.get('filterPosts').subscribe(this.filterFunc);
   },
   filterChanged() {
     this.setModel(this.get('filterPosts').filter(this.posts.toArray()).sort(this.sortPosts));
@@ -19,5 +20,8 @@ export default Ember.Component.extend({
   },
   didReceiveAttrs() {
     this.updateModel();
+  },
+  willDestroy() {
+    this.get('filterPosts').unsubscribe(this.filterFunc);
   }
 });
