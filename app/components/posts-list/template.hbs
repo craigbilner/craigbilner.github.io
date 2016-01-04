@@ -1,10 +1,14 @@
 <div class="posts-list">
     <div class="posts">
-      {{#each filteredPosts as |post|}}
-        {{#post-summary post=post}}{{/post-summary}}
-      {{/each}}
+      {{#if hasPosts}}
+        {{#each filteredPosts as |post|}}
+          {{#post-summary post=post}}{{/post-summary}}
+        {{/each}}
+      {{else}}
+        {{#no-results}}{{/no-results}}
+      {{/if}}
     </div>
     <aside class="filter-panel-container">
-        {{#filter-panel}}{{/filter-panel}}
+      {{#filter-panel}}{{/filter-panel}}
     </aside>
 </div>

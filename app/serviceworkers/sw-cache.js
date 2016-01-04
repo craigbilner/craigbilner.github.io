@@ -1,4 +1,4 @@
-var CURRENT_VERSION = 'v2';
+var CURRENT_VERSION = 'v3';
 var CACHE_URLS = {
   'https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch': 1,
   'https://api.cosmicjs.com/v1/blog-cb/objects': 1,

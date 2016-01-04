@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   dataStore: Ember.inject.service('data-store'),
   filterPosts: Ember.inject.service('filter-posts'),
+  hasPosts: true,
   didInitAttrs() {
     this.setPosts = this.setPosts.bind(this);
     this.get('dataStore').subscribe(this.setPosts).then(posts => {
@@ -17,7 +18,9 @@ export default Ember.Component.extend({
     this.filterChanged();
   },
   setFilteredPosts(posts) {
-    this.set('filteredPosts', posts.toArray().sort(this.sortPosts));
+    const filteredPosts = posts.toArray().sort(this.sortPosts);
+    this.set('filteredPosts', filteredPosts);
+    this.set('hasPosts', filteredPosts.length > 0);
   },
   filterChanged() {
     this.setFilteredPosts(this.get('filterPosts').filter(this.posts));
