@@ -9,14 +9,23 @@ const metaFilter = key => metaField => {
   return metaField.key === key;
 };
 
-function getSummary (metaFields) {
+function getMeta (metaFields, key) {
   if (!metaFields || !metaFields.length) return [];
-  return metaFields.filter(metaFilter('summary'))[0].value;
+  const items = metaFields.filter(metaFilter(key));
+
+  return items.length === 1 ? items[0].value : null;
+}
+
+function getSummary (metaFields) {
+  return getMeta(metaFields, 'summary');
 }
 
 function getTags (metaFields) {
-  if (!metaFields || !metaFields.length) return [];
-  return metaFields.filter(metaFilter('tags'))[0].value;
+  return getMeta(metaFields, 'tags');
+}
+
+function getCategory (metaFields) {
+  return getMeta(metaFields, 'category');
 }
 
 const reduceSelectedPost = slug => (posts, post) => {
@@ -55,6 +64,7 @@ export default Ember.Service.extend({
       title: post.title,
       summary: getSummary(post.metafields),
       tags: getTags(post.metafields),
+      category: getCategory(post.metafields),
       isSelected: post.isSelected
     }));
   },
