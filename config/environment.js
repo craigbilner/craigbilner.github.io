@@ -25,10 +25,13 @@ module.exports = function (environment) {
     serviceWorker: {
       enabled: true,
       includeRegistration: false,
-      serviceWorkerFile: 'sw.js',
+      serviceWorkerFile: 'sw-0.0.1.js',
       skipWaiting: false,
       excludePaths: [
         new RegExp(/.\.map$/)
+      ],
+      dynamicCache: [
+        '/'
       ]
     }
   };
