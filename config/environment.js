@@ -21,18 +21,6 @@ module.exports = function (environment) {
       'img-src': "'self'",
       'style-src': "'self'",
       'media-src': "'self'"
-    },
-    serviceWorker: {
-      enabled: true,
-      includeRegistration: false,
-      serviceWorkerFile: 'sw-0.0.1.js',
-      skipWaiting: false,
-      excludePaths: [
-        new RegExp(/.\.map$/)
-      ],
-      dynamicCache: [
-        '/'
-      ]
     }
   };
 
