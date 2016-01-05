@@ -22,6 +22,7 @@ module.exports = function (defaults) {
   app.import('vendor/Museo_Slab_500_2-webfont.woff2');
   app.import('bower_components/moment/moment.js');
   app.import('vendor/shims/moment.js');
+  app.import('bower_components/fetch/fetch.js');
 
   return app.toTree();
 };
