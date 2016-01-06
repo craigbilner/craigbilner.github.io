@@ -2,7 +2,7 @@
     <div class="posts">
       {{#if hasPosts}}
           <div class="filter-button-container">
-            {{#filter-button}}{{/filter-button}}
+              <span class="arrow">&#10140;</span>{{#filter-button}}{{/filter-button}}
           </div>
         {{#each filteredPosts as |post|}}
           {{#post-summary post=post}}{{/post-summary}}

@@ -1,6 +1,8 @@
 .posts-list {
   display: flex;
   flex-flow: row;
+  position: relative;
+  overflow: hidden;
 
   .posts {
     @media(min-width: 550px) {
@@ -35,6 +37,12 @@
     align-items: center;
     justify-content: center;
     margin-top: 0.25rem;
+
+    .arrow {
+      color: white;
+      transform: rotate(180deg);
+      margin-right: 0.5rem;
+    }
 
     div {
       display: flex;
