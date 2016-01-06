@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
-let subscribers = [];
+let filterSubscribers = [];
+let panelSubscribers = [];
 const blogFilters = {};
 
 function keywordMatch (filters, content) {
@@ -29,17 +30,27 @@ const filterPosts = filters => item => {
     && categoryMatch(filters, item.get('category'));
 };
 
+function tellPanelSubscribers (val) {
+  panelSubscribers.forEach(func => {
+    func(val);
+  });
+}
+
+const unsubscribe = func => subscribers => {
+  subscribers.reduce((arr, item) => {
+    if (item !== func) {
+      arr.push(item);
+    }
+    return arr;
+  }, []);
+}
+
 export default Ember.Service.extend({
   subscribe(func) {
-    subscribers.push(func);
+    filterSubscribers.push(func);
   },
   unsubscribe(func) {
-    subscribers = subscribers.reduce((arr, item) => {
-      if (item !== func) {
-        arr.push(item);
-      }
-      return arr;
-    }, []);
+    filterSubscribers = unsubscribe(func)(filterSubscribers);
   },
   push({ key, value }) {
     if (value) {
@@ -47,11 +58,23 @@ export default Ember.Service.extend({
     } else {
       delete blogFilters[key];
     }
-    subscribers.forEach(func => {
+    filterSubscribers.forEach(func => {
       func();
     });
   },
   filter(posts) {
     return posts.filter(filterPosts(blogFilters));
+  },
+  subscribeToPanel(func) {
+    panelSubscribers.push(func);
+  },
+  unsubscribeFromPanel(func) {
+    panelSubscribers = unsubscribe(func)(panelSubscribers);
+  },
+  showPanel() {
+    tellPanelSubscribers(true);
+  },
+  hidePanel() {
+    tellPanelSubscribers(false);
   }
 });

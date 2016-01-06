@@ -1,9 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  filterPosts: Ember.inject.service('filter-posts'),
   actions: {
     showFilter() {
-      console.log('showing filter');
+      this.get('filterPosts').showPanel();
     }
   }
 });

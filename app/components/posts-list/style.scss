@@ -3,6 +3,7 @@
   flex-flow: row;
   position: relative;
   overflow: hidden;
+  min-height: 30rem;
 
   .posts {
     @media(min-width: 550px) {
@@ -20,7 +21,7 @@
     top: 0;
     background-color: white;
     width: 100vw;
-    transform: translate3d(100vw, 9.4rem, 0);
+    transform: translateX(100vw);
     transition: transform 0.25s ease-out;
 
     @media(min-width: 1000px) {
@@ -49,5 +50,23 @@
       justify-content: center;
       align-items: center;
     }
+  }
+}
+
+.posts-list-container.show-panel {
+  .filter-panel-container {
+    transform: translateX(0);
+  }
+}
+
+.posts-list-container {
+  .posts {
+    display: none;
+  }
+}
+
+.posts-list-container.show-posts {
+  .posts {
+    display: block;
   }
 }
