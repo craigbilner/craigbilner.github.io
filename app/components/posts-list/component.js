@@ -39,12 +39,15 @@ export default Ember.Component.extend({
   },
   togglePanel(state) {
     this.set('showFilterPanel', state);
+    if (!state) {
+      this.set('showPosts', true);
+    }
   },
   didRender() {
     this.element.addEventListener('transitionend', this.transitionEnd);
   },
   transitionEnd() {
-    this.set('showPosts', false);
+    this.set('showPosts', !this.get('showFilterPanel'));
   },
   willDestroy() {
     this.element.removeEventListener('transitionend', this.transitionEnd);

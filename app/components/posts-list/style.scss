@@ -3,17 +3,7 @@
   flex-flow: row;
   position: relative;
   overflow: hidden;
-  min-height: 30rem;
-
-  .posts {
-    @media(min-width: 550px) {
-      display: flex;
-      flex-flow: row;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      width: 100%;
-    }
-  }
+  min-height: 32rem;
 
   .filter-panel-container {
     position: absolute;
@@ -26,7 +16,8 @@
 
     @media(min-width: 1000px) {
       border-left: 1px solid $colour-primary;
-      display: block;
+      position: inherit;
+      transform: translateX(0);
     }
   }
 
@@ -38,6 +29,10 @@
     align-items: center;
     justify-content: center;
     margin-top: 0.25rem;
+
+    @media(min-width: 1000px) {
+      display: none;
+    }
 
     .arrow {
       color: white;
@@ -68,5 +63,12 @@
 .posts-list-container.show-posts {
   .posts {
     display: block;
+
+    @media(min-width: 550px) {
+      display: flex;
+      flex-flow: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
   }
 }

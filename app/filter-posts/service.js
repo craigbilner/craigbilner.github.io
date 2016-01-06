@@ -37,13 +37,13 @@ function tellPanelSubscribers (val) {
 }
 
 const unsubscribe = func => subscribers => {
-  subscribers.reduce((arr, item) => {
+  return subscribers.reduce((arr, item) => {
     if (item !== func) {
       arr.push(item);
     }
     return arr;
   }, []);
-}
+};
 
 export default Ember.Service.extend({
   subscribe(func) {

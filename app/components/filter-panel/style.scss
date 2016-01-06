@@ -1,6 +1,10 @@
 .filter-panel {
-  width: 20rem;
+  width: 100vw;
   padding: 1rem;
+
+  @media (min-width: 1000px) {
+    width: 20rem;
+  }
 
   * {
     color: $colour-secondary;
@@ -61,5 +65,23 @@
 
   input[type=checkbox] {
     margin-right: 1rem;
+  }
+
+  .close-container {
+    display: flex;
+    justify-content: flex-end;
+
+    @media(min-width: 1000px) {
+      display: none;
+    }
+  }
+
+  .close {
+    color: white;
+    background-color: $colour-secondary;
+    border: none;
+    font-size: 1rem;
+    padding: 0.25rem;
+    outline: none;
   }
 }
