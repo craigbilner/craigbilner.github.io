@@ -1,9 +1,12 @@
 /*jshint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var Funnel = require('broccoli-funnel');
+var MergeTrees = require('broccoli-merge-trees');
 
 module.exports = function (defaults) {
   var app = new EmberApp(defaults, {});
+  var Funnel = require('broccoli-funnel');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
@@ -24,5 +27,17 @@ module.exports = function (defaults) {
   app.import('vendor/shims/moment.js');
   app.import('bower_components/fetch/fetch.js');
 
-  return app.toTree();
+  var swAssets = new Funnel('service-workers', {
+    srcDir: '/',
+    include: ['**/*.js'],
+    destDir: '/'
+  });
+
+  var swTAssets = new Funnel('bower_components/sw-toolbox', {
+    srcDir: '/',
+    include: ['sw-toolbox.js'],
+    destDir: '/'
+  });
+
+  return app.toTree(new MergeTrees([swAssets, swTAssets]));
 };

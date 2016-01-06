@@ -1,3 +1,6 @@
+importScripts('sw-toolbox.js');
+toolbox.router.any('/', toolbox.networkFirst);
+
 var CURRENT_VERSION = 'v3';
 var CACHE_URLS = {
   'https://api.cosmicjs.com/v1/blog-cb/objects': 1,
