@@ -1,5 +1,20 @@
 importScripts('sw-toolbox.js');
+
 toolbox.router.any('/', toolbox.networkFirst);
+
+var urlsToPrefetch = [
+  'assets/blog.css',
+  'assets/blog.js',
+  'assets/vendor.css',
+  'assets/vendor.js',
+  'vendor/Museo_Slab_500_2-webfont.woff',
+  'vendor/Museo_Slab_500_2-webfont.woff2'
+];
+
+urlsToPrefetch.forEach(function (url) {
+  toolbox.router.any(url, toolbox.cacheFirst)
+});
+toolbox.precache(urlsToPrefetch);
 
 var CURRENT_VERSION = 'v3';
 var CACHE_URLS = {
