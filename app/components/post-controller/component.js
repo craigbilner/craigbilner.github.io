@@ -2,6 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   dataStore: Ember.inject.service('data-store'),
+  didInitAttrs() {
+    window.scrollTo(0, 0);
+  },
   didReceiveAttrs() {
     if (typeof(this.model) === 'string') {
       this.addPost = this.addPost.bind(this);
