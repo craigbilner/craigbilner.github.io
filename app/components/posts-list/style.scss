@@ -13,11 +13,33 @@
   }
 
   .filter-panel-container {
-    display: none;
-    border-left: 1px solid $colour-primary;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: white;
+    width: 100vw;
+    transform: translate3d(100vw, 9.4rem, 0);
+    transition: transform 0.25s ease-out;
 
     @media(min-width: 1000px) {
+      border-left: 1px solid $colour-primary;
       display: block;
+    }
+  }
+
+  .filter-button-container {
+    height: 2.5rem;
+    width: 100vw;
+    background: $colour-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.25rem;
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

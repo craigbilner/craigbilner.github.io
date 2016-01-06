@@ -1,6 +1,9 @@
 <div class="posts-list">
     <div class="posts">
       {{#if hasPosts}}
+          <div class="filter-button-container">
+            {{#filter-button}}{{/filter-button}}
+          </div>
         {{#each filteredPosts as |post|}}
           {{#post-summary post=post}}{{/post-summary}}
         {{/each}}
