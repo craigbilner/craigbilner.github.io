@@ -12,11 +12,11 @@ var urlsToPrefetch = [
 ];
 
 urlsToPrefetch.forEach(function (url) {
-  toolbox.router.any(url, toolbox.networkFirst)
+  toolbox.router.any(url, toolbox.fastest)
 });
 toolbox.precache(urlsToPrefetch);
 
-var CURRENT_VERSION = 'v3';
+var CURRENT_VERSION = 'v1';
 var CACHE_URLS = {
   'https://api.cosmicjs.com/v1/blog-cb/objects': 1,
   'https://api.cosmicjs.com/v1/blog-cb/objects?bustcache=true': 2
