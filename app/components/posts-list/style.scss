@@ -3,7 +3,7 @@
   flex-flow: row;
   position: relative;
   overflow: hidden;
-  min-height: 32rem;
+  min-height: 100vh;
 
   .filter-panel-container {
     position: absolute;
@@ -13,11 +13,13 @@
     width: 100vw;
     transform: translateX(100vw);
     transition: transform 0.25s ease-out;
+    min-height: 100vh;
 
     @media(min-width: 1000px) {
       border-left: 1px solid $colour-primary;
       position: inherit;
       transform: translateX(0);
+      width: 20rem;
     }
   }
 
@@ -69,6 +71,10 @@
       flex-flow: row;
       flex-wrap: wrap;
       justify-content: space-around;
+    }
+
+    @media(min-width: 1000px) {
+      width: calc(100% - 20rem);
     }
   }
 }

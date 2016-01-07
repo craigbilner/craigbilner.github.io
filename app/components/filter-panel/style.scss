@@ -1,10 +1,5 @@
 .filter-panel {
-  width: 100vw;
   padding: 1rem;
-
-  @media (min-width: 1000px) {
-    width: 20rem;
-  }
 
   * {
     color: $colour-secondary;
