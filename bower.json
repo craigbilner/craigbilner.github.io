@@ -12,6 +12,7 @@
     "qunit": "~1.20.0",
     "moment": "~2.10.6",
     "fetch": "~0.10.1",
-    "sw-toolbox": "~3.0.0"
+    "sw-toolbox": "~3.0.0",
+    "fastclick": "~1.0.6"
   }
 }
