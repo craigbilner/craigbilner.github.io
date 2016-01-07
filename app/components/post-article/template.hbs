@@ -1,11 +1,9 @@
-<article>
-    <section class="post-article">
-        <div class="top">
-            <h1>{{post.title}}</h1>
-            <time datetime="{{post.created}}">{{format-date post.created}}</time>
-        </div>
-        <div>
-          {{{post.content}}}
-        </div>
-    </section>
-</article>
+<section class="post-article">
+    <div class="top">
+        <h1>{{post.title}}</h1>
+        <time datetime="{{post.created}}">{{format-date post.created}}</time>
+    </div>
+    <div>
+      {{{post.content}}}
+    </div>
+</section>

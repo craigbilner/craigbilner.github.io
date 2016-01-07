@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['post-controller'],
   dataStore: Ember.inject.service('data-store'),
   didInitAttrs() {
     window.scrollTo(0, 0);

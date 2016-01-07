@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   dataStore: Ember.inject.service('data-store'),
   filterPosts: Ember.inject.service('filter-posts'),
   hasPosts: true,
-  classNames: ['posts-list-container'],
+  classNames: ['posts-list'],
   classNameBindings: ['showFilterPanel:show-panel', 'showPosts:show-posts'],
   showFilterPanel: false,
   showPosts: true,

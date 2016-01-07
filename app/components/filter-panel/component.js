@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['filter-panel'],
   filterPosts: Ember.inject.service('filter-posts'),
   actions: {
     filterChange(type, evt) {

@@ -1,22 +1,18 @@
-<div>
-    <section class="post-summary">
-        <h2>
-          {{#link-to "post" post}}{{post.title}}{{/link-to}}
-        </h2>
-        <div class="created">
-          {{format-date post.created}}
-        </div>
-      {{#if post.summary.length}}
-          <div class="summary">
-            {{{post.summary}}}
-          </div>
-      {{else}}
-          <div class="no-summary">
-              So...didn't write a summary for this one...surprise!
-          </div>
-      {{/if}}
-        <div class="tags">
-          {{#post-tags tags=post.tags}}{{/post-tags}}
-        </div>
-    </section>
+<h2>
+  {{#link-to "post" post}}{{post.title}}{{/link-to}}
+</h2>
+<div class="created">
+  {{format-date post.created}}
+</div>
+{{#if post.summary.length}}
+    <div class="summary">
+      {{{post.summary}}}
+    </div>
+{{else}}
+    <div class="no-summary">
+        So...didn't write a summary for this one...surprise!
+    </div>
+{{/if}}
+<div class="tags">
+  {{#post-tags tags=post.tags}}{{/post-tags}}
 </div>
