@@ -12,7 +12,7 @@ var urlsToPrefetch = [
 ];
 
 urlsToPrefetch.forEach(function (url) {
-  toolbox.router.any(url, toolbox.cacheFirst)
+  toolbox.router.any(url, toolbox.networkFirst)
 });
 toolbox.precache(urlsToPrefetch);
 
