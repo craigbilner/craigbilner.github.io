@@ -36,16 +36,9 @@
       display: none;
     }
 
-    .arrow {
-      color: white;
-      transform: rotate(180deg);
-      margin-right: 0.5rem;
-    }
-
     div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 100%;
+      height: 100%;
     }
   }
 }
