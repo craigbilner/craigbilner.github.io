@@ -1,6 +1,7 @@
 .post-summary {
   padding: 1rem 0.5rem;
   border-bottom: 1px solid $colour-grey;
+  width: 100vw;
 
   @media(min-width: 550px) {
     max-width: 16rem;

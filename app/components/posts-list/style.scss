@@ -13,7 +13,7 @@
     .posts {
       display: block;
 
-      @media(min-width: 550px) {
+      @media(min-width: 500px) {
         display: flex;
         flex-flow: row;
         flex-wrap: wrap;
@@ -35,25 +35,33 @@
 
   .head {
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     width: 100vw;
     align-items: center;
     align-self: flex-start;
-    height: 3rem;
 
-    @media (min-width: 550px) {
+    @media (min-width: 500px) {
+      height: 3rem;
       padding: 0 1rem;
+      flex-flow: row;
     }
   }
 
   .filter-text {
-    display: none;
     flex: 1;
+    order: 2;
     color: $colour-secondary;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+
+    @media(min-width: 500px) {
+      margin-top: 0;
+      display: block;
+      order: 1;
+    }
 
     @media(min-width: 550px) {
-      display: block;
+      font-size: 1.25rem;
     }
   }
 
@@ -84,6 +92,11 @@
     justify-content: center;
     margin-top: 0.25rem;
     flex: 1;
+    order: 1;
+
+    @media(min-width: 500px) {
+      order: 2;
+    }
 
     @media(min-width: 1000px) {
       display: none;
