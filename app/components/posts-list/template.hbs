@@ -1,7 +1,12 @@
 <div class="posts">
   {{#if hasPosts}}
-      <div class="filter-button-container">
-        {{#filter-button}}{{/filter-button}}
+      <div class="head">
+          <div class="filter-text">
+              Showing 10/10 postings
+          </div>
+          <div class="filter-button-container">
+            {{#filter-button}}{{/filter-button}}
+          </div>
       </div>
     {{#each filteredPosts as |post|}}
       {{#post-summary post=post}}{{/post-summary}}

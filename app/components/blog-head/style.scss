@@ -1,6 +1,11 @@
 .blog-head {
 	padding: 0.5rem;
 	background-color: #105410;
+  height: 10rem;
+
+  @media(min-width: 768px) {
+    height: 12rem;
+  }
 
 	a {
 		text-decoration: none;
