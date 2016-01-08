@@ -8,6 +8,14 @@
     border-bottom: none;
   }
 
+  @media(min-width: 750px) {
+    max-width: 21rem;
+  }
+
+  @media(min-width: 1300px) {
+    padding: 1rem;
+  }
+
   h2 {
     margin-bottom: 0.5rem;
   }

@@ -17,7 +17,8 @@
         display: flex;
         flex-flow: row;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: flex-start;
+        align-content: flex-start;
         width: 100vw;
       }
 
@@ -42,7 +43,7 @@
 
     @media (min-width: 500px) {
       height: 3rem;
-      padding: 0 1rem;
+      padding: 0 0.5rem;
       flex-flow: row;
     }
   }

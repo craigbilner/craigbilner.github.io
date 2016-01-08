@@ -1,0 +1,11 @@
+.no-results {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+
+  .no-results-text {
+    max-width: 10rem;
+    font-size: 2rem;
+  }
+}
