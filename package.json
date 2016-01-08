@@ -1,24 +1,13 @@
 {
-  "name": "blog",
-  "version": "0.0.1",
-  "description": "A blog where I write stuff and learn Ember",
+  "name": "craigbilner.github.io",
+  "version": "0.0.2",
+  "description": "A place where I write things",
   "private": false,
+  "main": "app/app.js",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "scripts": {
-    "build": "ember build",
-    "start": "ember server",
-    "test": "ember test",
-    "deploy": "ember build --environment=production && rm -rf sw* && rm -rf assets && cp -a ./dist/. ./"
-  },
-  "repository": "",
-  "engines": {
-    "node": ">= 0.10.0"
-  },
-  "author": "",
-  "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
     "broccoli-funnel": "^1.0.1",
@@ -45,5 +34,36 @@
     "ember-export-application-global": "^1.0.4",
     "ember-resolver": "^2.0.3",
     "moment": "^2.10.6"
-  }
+  },
+  "scripts": {
+    "build": "ember build",
+    "start": "ember server",
+    "test": "ember test",
+    "deploy": "ember build --environment=production && rm -rf sw* && rm -rf assets && cp -a ./dist/. ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craigbilner/craigbilner.github.io.git"
+  },
+  "keywords": [
+    "blog",
+    "craigbilner",
+    "craig",
+    "bilner",
+    "ember",
+    "service",
+    "workers",
+    "mobile",
+    "offline",
+    "first"
+  ],
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "author": "Craig Bilner",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/craigbilner/craigbilner.github.io/issues"
+  },
+  "homepage": "https://github.com/craigbilner/craigbilner.github.io#readme"
 }
