@@ -9,26 +9,29 @@ const metaFilter = key => metaField => {
   return metaField.key === key;
 };
 
-function getMeta (metaFields, key) {
-  if (!metaFields || !metaFields.length) return [];
+function getMeta(metaFields, key) {
+  if (!metaFields || !metaFields.length) {
+    return [];
+  }
+
   const items = metaFields.filter(metaFilter(key));
 
   return items.length === 1 ? items[0].value : null;
 }
 
-function getSummary (metaFields) {
+function getSummary(metaFields) {
   return getMeta(metaFields, 'summary');
 }
 
-function getTags (metaFields) {
+function getTags(metaFields) {
   return getMeta(metaFields, 'tags');
 }
 
-function getCategory (metaFields) {
+function getCategory(metaFields) {
   return getMeta(metaFields, 'category');
 }
 
-function handleFetch (response) {
+function handleFetch(response) {
   const responseClone = response.clone();
   if (responseClone.ok) {
     return responseClone.json().then(jsonResponse => {
@@ -39,7 +42,7 @@ function handleFetch (response) {
   }
 }
 
-function handleError (error) {
+function handleError(error) {
   console.error('There has been a problem with your fetch operation', error);
 }
 
