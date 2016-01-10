@@ -1,0 +1,26 @@
+.quick-tip {
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid $colour-grey;
+  background-color: $colour-tertiary;
+  width: 100%;
+
+  @media(min-width: 1300px) {
+    padding: 1rem;
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .created {
+    color: $colour-grey-text;
+  }
+
+  .summary, .no-summary {
+    margin: 1rem 0;
+  }
+
+  .no-summary {
+    font-style: italic;
+  }
+}

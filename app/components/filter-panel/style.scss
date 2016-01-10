@@ -62,6 +62,12 @@
     margin-right: 1rem;
   }
 
+  .quick-tip-filter {
+    @media(min-width: 550px) {
+      display: none;
+    }
+  }
+
   .close-container {
     display: flex;
     justify-content: flex-end;

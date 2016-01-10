@@ -22,8 +22,12 @@ export default Ember.Component.extend({
 
     this.transitionEnd = this.transitionEnd.bind(this);
   },
+  getQuickTips(post) {
+    return post.get('category') === 'qt';
+  },
   setPosts(posts) {
     this.set('posts', posts);
+    this.set('quickTips', posts.filter(this.getQuickTips));
     this.filterChanged();
   },
   setFilteredPosts(posts) {

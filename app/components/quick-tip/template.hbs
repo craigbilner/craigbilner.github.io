@@ -1,0 +1,15 @@
+<h2>
+  {{post.title}}
+</h2>
+<div class="created">
+  {{format-date post.created}}
+</div>
+{{#if post.summary.length}}
+    <div class="summary">
+      {{{post.summary}}}
+    </div>
+{{else}}
+    <div class="no-summary">
+        So...only wrote a title...oops...
+    </div>
+{{/if}}

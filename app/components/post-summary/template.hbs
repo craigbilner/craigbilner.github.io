@@ -1,5 +1,9 @@
 <h2>
-  {{#link-to "post" post}}{{post.title}}{{/link-to}}
+  {{#if isQuickTip}}
+    {{post.title}}
+  {{else}}
+    {{#link-to "post" post}}{{post.title}}{{/link-to}}
+  {{/if}}
 </h2>
 <div class="created">
   {{format-date post.created}}

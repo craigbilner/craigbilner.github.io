@@ -2,15 +2,26 @@
   {{#if hasPosts}}
       <div class="head">
           <div class="filter-text">
-              Showing 10/10 postings
+              showing 10/10 postings
           </div>
           <div class="filter-button-container">
             {{#filter-button}}{{/filter-button}}
           </div>
       </div>
-    {{#each filteredPosts as |post|}}
-      {{#post-summary post=post}}{{/post-summary}}
-    {{/each}}
+      <div class="thumbnails">
+          <div class="blog-posts">
+              <div class="thumb-title posts-title">the posts</div>
+            {{#each filteredPosts as |post|}}
+              {{#post-summary post=post}}{{/post-summary}}
+            {{/each}}
+          </div>
+          <div class="quick-tips">
+              <div class="thumb-title">quick tips</div>
+            {{#each quickTips as |qt|}}
+              {{#quick-tip post=qt}}{{/quick-tip}}
+            {{/each}}
+          </div>
+      </div>
   {{else}}
     {{#no-results}}{{/no-results}}
   {{/if}}

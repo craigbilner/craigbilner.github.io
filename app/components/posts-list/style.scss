@@ -7,24 +7,15 @@
 
   .posts {
     display: none;
+
+    @media(min-width: 1000px) {
+      width: calc(100% - 20rem);
+    }
   }
 
   &.show-posts {
     .posts {
       display: block;
-
-      @media(min-width: 500px) {
-        display: flex;
-        flex-flow: row;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-content: flex-start;
-        width: 100vw;
-      }
-
-      @media(min-width: 1000px) {
-        width: calc(100% - 20rem);
-      }
     }
   }
 
@@ -106,6 +97,63 @@
     div {
       width: 100%;
       height: 100%;
+    }
+  }
+
+  .thumbnails {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+  }
+
+  .thumb-title {
+    color: $colour-secondary;
+    height: 2rem;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    display: none;
+
+    @media(min-width: 550px) {
+      display: block;
+    }
+  }
+
+  .posts-title {
+    padding-left: 0.5rem;
+  }
+
+  .blog-posts {
+    margin-top: 1rem;
+
+    @media(min-width: 500px) {
+      display: flex;
+      flex-flow: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+    }
+
+    @media(min-width: 550px) {
+      margin-top: 0rem;
+      width: calc(100% - 15rem);
+    }
+
+    @media(min-width: 720px) {
+      justify-content: space-around;
+    }
+  }
+
+  .quick-tips {
+    display: none;
+    width: 15rem;
+
+    @media(min-width: 550px) {
+      display: block;
+    }
+
+    @media(min-width: 1000px) {
+      margin: 0 1rem;
     }
   }
 }
