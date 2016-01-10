@@ -7,12 +7,12 @@
     "ember-data": "2.2.0",
     "ember-load-initializers": "0.1.7",
     "ember-qunit-notifications": "0.1.0",
-    "jquery": "^1.11.3",
-    "loader.js": "^3.5.0",
-    "qunit": "~1.20.0",
-    "moment": "~2.10.6",
-    "fetch": "~0.10.1",
-    "sw-toolbox": "~3.0.0",
-    "fastclick": "~1.0.6"
+    "jquery": "1.11.3",
+    "loader.js": "3.5.0",
+    "qunit": "1.20.0",
+    "moment": "2.10.6",
+    "fetch": "0.10.1",
+    "sw-toolbox": "3.0.0",
+    "fastclick": "1.0.6"
   }
 }
