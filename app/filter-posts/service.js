@@ -2,34 +2,33 @@ import Ember from 'ember';
 
 let filterSubscribers = [];
 let panelSubscribers = [];
-let blogFilters = {};
 
 function keywordMatch(filters, content) {
-  if (!filters['filter-keywords']) {
+  if (!filters['filterKeywords']) {
     return true;
   }
 
-  return ~content.indexOf(filters['filter-keywords']);
+  return ~content.indexOf(filters['filterKeywords']);
 }
 
 function lengthMatch(filters, content) {
-  if (!(filters['filter-short'] || filters['filter-medium'] || filters['filter-long'])) {
+  if (!(filters['filterShort'] || filters['filterMedium'] || filters['filterLong'])) {
     return true;
   }
 
-  return (filters['filter-short'] && content.length < 1700)
-    || (filters['filter-medium'] && content.length >= 1700 && content.length < 4000)
-    || (filters['filter-long'] && content.length >= 4000);
+  return (filters['filterShort'] && content.length < 1700)
+    || (filters['filterMedium'] && content.length >= 1700 && content.length < 4000)
+    || (filters['filterLong'] && content.length >= 4000);
 }
 
 function categoryMatch(filters, category) {
-  if (!(filters['filter-quick'] || filters['filter-code'] || filters['filter-opinion'])) {
+  if (!(filters['filterQuick'] || filters['filterCode'] || filters['filterOpinion'])) {
     return true;
   }
 
-  return filters['filter-quick'] && category === 'qt'
-    || filters['filter-code'] && category === 'c'
-    || filters['filter-opinion'] && category === 'o';
+  return filters['filterQuick'] && category === 'qt'
+    || filters['filterCode'] && category === 'c'
+    || filters['filterOpinion'] && category === 'o';
 }
 
 const filterPosts = filters => item => {
@@ -58,6 +57,7 @@ const unsubscribe = func => subscribers => {
 };
 
 export default Ember.Service.extend({
+  blogFilters: {},
   subscribe(func) {
     filterSubscribers.push(func);
   },
@@ -66,9 +66,9 @@ export default Ember.Service.extend({
   },
   push({ key, value }) {
     if (value) {
-      blogFilters[key] = value;
+      this.blogFilters[key] = value;
     } else {
-      delete blogFilters[key];
+      delete this.blogFilters[key];
     }
     this.broadcast();
   },
@@ -78,7 +78,7 @@ export default Ember.Service.extend({
     });
   },
   filter(posts) {
-    return posts.filter(filterPosts(blogFilters));
+    return posts.filter(filterPosts(this.blogFilters));
   },
   subscribeToPanel(func) {
     panelSubscribers.push(func);
@@ -92,8 +92,11 @@ export default Ember.Service.extend({
   hidePanel() {
     tellPanelSubscribers(false);
   },
+  getFilters() {
+    return this.blogFilters;
+  },
   clear() {
-    blogFilters = {};
+    this.blogFilters = {};
     this.broadcast();
   }
 });
