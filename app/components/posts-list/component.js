@@ -10,6 +10,8 @@ export default Ember.Component.extend({
     'showPosts:show-posts',
     'showingFilterPanel:showing-panel'
   ],
+  totalCount: 0,
+  filteredCount: 0,
   showFilterPanel: false,
   showingFilterPanel: false,
   showPosts: true,
@@ -32,6 +34,7 @@ export default Ember.Component.extend({
   },
   setPosts(posts) {
     this.set('posts', posts);
+    this.set('totalCount', posts.get('length'));
     this.set('quickTips', posts.filter(this.getQuickTips));
     this.filterChanged();
   },
@@ -39,6 +42,7 @@ export default Ember.Component.extend({
     const filteredPosts = posts.toArray().sort(this.sortPosts);
     this.set('filteredPosts', filteredPosts);
     this.set('hasPosts', filteredPosts.length > 0);
+    this.set('filteredCount', filteredPosts.length);
   },
   filterChanged() {
     this.setFilteredPosts(this.get('filterPosts').filter(this.posts));
