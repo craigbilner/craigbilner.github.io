@@ -74,7 +74,7 @@ export default Ember.Service.extend({
   },
   broadcast() {
     filterSubscribers.forEach(func => {
-      func();
+      func(this.blogFilters);
     });
   },
   filter(posts) {

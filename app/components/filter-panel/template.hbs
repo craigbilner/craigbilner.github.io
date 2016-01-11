@@ -9,7 +9,7 @@
         <div class="filter input">
             <label for="filter-keywords">keywords</label>
             <input id="filter-keywords" type="text" placeholder="type keywords"
-                   onkeyup={{action "filterChange" "filterKeywords"}} value={{filter.filterKeywords}} />
+                   onkeyup={{action "filterChange" "filterKeywords"}} value={{filterKeywords}} />
         </div>
     </div>
     <div class="title">
@@ -18,17 +18,17 @@
     <div class="filters">
         <div class="filter checkbox">
             <input id="filter-short" type="checkbox"
-                   onchange={{action "filterChange" "filterShort"}} checked={{filter.filterShort}} />
+                   onchange={{action "filterChange" "filterShort"}} checked={{filterShort}} />
             <label for="filter-short">short and sweet</label>
         </div>
         <div class="filter checkbox">
             <input id="filter-medium" type="checkbox"
-                   onchange={{action "filterChange" "filterMedium"}} checked={{filter.filterMedium}} />
+                   onchange={{action "filterChange" "filterMedium"}} checked={{filterMedium}} />
             <label for="filter-medium">medium (not Medium)</label>
         </div>
         <div class="filter checkbox">
             <input id="filter-long" type="checkbox"
-                   onchange={{action "filterChange" "filterLong"}} checked={{filter.filterLong}} />
+                   onchange={{action "filterChange" "filterLong"}} checked={{filterLong}} />
             <label for="filter-long">tl;dr...zzzzzz</label>
         </div>
     </div>
@@ -38,17 +38,17 @@
     <div class="filters">
         <div class="filter checkbox quick-tip-filter">
             <input id="filter-quick" type="checkbox"
-                   onchange={{action "filterChange" "filterQuick"}} checked={{filter.filterQuick}} />
+                   onchange={{action "filterChange" "filterQuick"}} checked={{filterQuick}} />
             <label for="filter-quick">quick tip</label>
         </div>
         <div class="filter checkbox">
             <input id="filter-code" type="checkbox"
-                   onchange={{action "filterChange" "filterCode"}} checked={{filter.filterCode}} />
+                   onchange={{action "filterChange" "filterCode"}} checked={{filterCode}} />
             <label for="filter-code">if (code) { read(); }</label>
         </div>
         <div class="filter checkbox">
             <input id="filter-opinion" type="checkbox"
-                   onchange={{action "filterChange" "filterOpinion"}} checked={{filter.filterOpinion}} />
+                   onchange={{action "filterChange" "filterOpinion"}} checked={{filterOpinion}} />
             <label for="filter-opinion">unwarranted opinion</label>
         </div>
     </div>
