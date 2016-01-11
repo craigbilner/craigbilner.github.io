@@ -1,11 +1,33 @@
 .no-results {
   display: flex;
-  width: 100vw;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+
+  @media(min-width: 1000px) {
+    width: calc(100vw - 20rem);
+  }
 
   .no-results-text {
     max-width: 10rem;
     font-size: 2rem;
+  }
+
+  .err {
+    color: $colour-grey-text-light;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  .safety {
+    background-color: $color-cta;
+    font-size: 1rem;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 1rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
   }
 }

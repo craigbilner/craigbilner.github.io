@@ -2,9 +2,9 @@ import Ember from 'ember';
 
 let filterSubscribers = [];
 let panelSubscribers = [];
-const blogFilters = {};
+let blogFilters = {};
 
-function keywordMatch (filters, content) {
+function keywordMatch(filters, content) {
   if (!filters['filter-keywords']) {
     return true;
   }
@@ -12,7 +12,7 @@ function keywordMatch (filters, content) {
   return ~content.indexOf(filters['filter-keywords']);
 }
 
-function lengthMatch (filters, content) {
+function lengthMatch(filters, content) {
   if (!(filters['filter-short'] || filters['filter-medium'] || filters['filter-long'])) {
     return true;
   }
@@ -22,7 +22,7 @@ function lengthMatch (filters, content) {
     || (filters['filter-long'] && content.length >= 4000);
 }
 
-function categoryMatch (filters, category) {
+function categoryMatch(filters, category) {
   if (!(filters['filter-quick'] || filters['filter-code'] || filters['filter-opinion'])) {
     return true;
   }
@@ -42,7 +42,7 @@ const filterPosts = filters => item => {
     && categoryMatch(filters, item.get('category'));
 };
 
-function tellPanelSubscribers (val) {
+function tellPanelSubscribers(val) {
   panelSubscribers.forEach(func => {
     func(val);
   });
@@ -70,6 +70,9 @@ export default Ember.Service.extend({
     } else {
       delete blogFilters[key];
     }
+    this.broadcast();
+  },
+  broadcast() {
     filterSubscribers.forEach(func => {
       func();
     });
@@ -88,5 +91,9 @@ export default Ember.Service.extend({
   },
   hidePanel() {
     tellPanelSubscribers(false);
+  },
+  clear() {
+    blogFilters = {};
+    this.broadcast();
   }
 });
