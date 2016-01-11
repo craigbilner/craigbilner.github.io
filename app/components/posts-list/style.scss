@@ -22,6 +22,20 @@
   &.show-panel {
     .filter-panel-container {
       transform: translateX(0);
+
+      @media(min-width: 550px) {
+        transform: translateX(50vw);
+      }
+    }
+  }
+
+  &.showing-panel {
+    .posts {
+      display: none;
+
+      @media(min-width: 550px) {
+        display: block;
+      }
     }
   }
 
@@ -65,11 +79,15 @@
     width: 100vw;
     transform: translateX(100vw);
     transition: transform 0.25s ease-out;
-    min-height: 100vh;
+
+    @media(min-width: 550px) {
+      width: 50vw;
+      height: 100%;
+    }
 
     @media(min-width: 1000px) {
       border-left: 1px solid $colour-primary;
-      position: inherit;
+      left: calc(100% - 20rem);
       transform: translateX(0);
       width: 20rem;
     }

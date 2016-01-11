@@ -5,8 +5,13 @@ export default Ember.Component.extend({
   filterPosts: Ember.inject.service('filter-posts'),
   hasPosts: true,
   classNames: ['posts-list'],
-  classNameBindings: ['showFilterPanel:show-panel', 'showPosts:show-posts'],
+  classNameBindings: [
+    'showFilterPanel:show-panel',
+    'showPosts:show-posts',
+    'showingFilterPanel:showing-panel'
+  ],
   showFilterPanel: false,
+  showingFilterPanel: false,
   showPosts: true,
   didInitAttrs() {
     this.setPosts = this.setPosts.bind(this);
@@ -45,13 +50,14 @@ export default Ember.Component.extend({
     this.set('showFilterPanel', state);
     if (!state) {
       this.set('showPosts', true);
+      this.set('showingFilterPanel', false);
     }
   },
   didRender() {
     this.element.addEventListener('transitionend', this.transitionEnd);
   },
   transitionEnd() {
-    this.set('showPosts', !this.get('showFilterPanel'));
+    this.set('showingFilterPanel', this.get('showFilterPanel'));
   },
   willDestroy() {
     this.element.removeEventListener('transitionend', this.transitionEnd);
