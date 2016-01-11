@@ -22,13 +22,14 @@ function lengthMatch(filters, content) {
 }
 
 function categoryMatch(filters, category) {
-  if (!(filters['filterQuick'] || filters['filterCode'] || filters['filterOpinion'])) {
+  if (!(filters['filterQuick'] || filters['filterCode'] || filters['filterOpinion'] || filters['filterJuvenal'])) {
     return true;
   }
 
   return filters['filterQuick'] && category === 'qt'
     || filters['filterCode'] && category === 'c'
-    || filters['filterOpinion'] && category === 'o';
+    || filters['filterOpinion'] && category === 'o'
+    || filters['filterJuvenal'] && category === 'j';
 }
 
 const filterPosts = filters => item => {

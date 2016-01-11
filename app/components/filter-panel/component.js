@@ -16,7 +16,8 @@ export default Ember.Component.extend({
         filterLong: false,
         filterQuick: false,
         filterCode: false,
-        filterOpinion: false
+        filterOpinion: false,
+        filterJuvenal: false
       });
     }
   },
