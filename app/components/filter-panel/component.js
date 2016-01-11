@@ -46,6 +46,9 @@ export default Ember.Component.extend({
     },
     hideFilterPanel() {
       this.get('filterPosts').hidePanel();
+      if (!matchMedia('(min-width: 550px)').matches) {
+        window.scrollTo(0, 0);
+      }
     }
   },
   willDestroy() {

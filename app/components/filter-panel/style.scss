@@ -26,6 +26,7 @@
 
   .filter {
     display: flex;
+    font-size: 1.25rem;
   }
 
   .filter.input {
@@ -39,7 +40,7 @@
   .filter.checkbox {
     flex-flow: row;
     align-items: center;
-    height: 1.5rem;
+    height: 2.5rem;
   }
 
   input[type=text] {
@@ -60,6 +61,8 @@
 
   input[type=checkbox] {
     margin-right: 1rem;
+    height: 2rem;
+    width: 2rem;
   }
 
   .quick-tip-filter {

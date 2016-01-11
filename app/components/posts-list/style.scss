@@ -3,13 +3,13 @@
   flex-flow: row;
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: 43rem;
 
   .posts {
     display: none;
 
     @media(min-width: 1000px) {
-      width: calc(100% - 20rem);
+      width: calc(100% - 22rem);
     }
   }
 
@@ -24,7 +24,7 @@
       transform: translateX(0);
 
       @media(min-width: 550px) {
-        transform: translateX(50vw);
+        transform: translateX(40vw);
       }
     }
   }
@@ -81,15 +81,15 @@
     transition: transform 0.25s ease-out;
 
     @media(min-width: 550px) {
-      width: 50vw;
+      width: 60vw;
       height: 100%;
     }
 
     @media(min-width: 1000px) {
       border-left: 1px solid $colour-primary;
-      left: calc(100% - 20rem);
+      left: calc(100% - 22rem);
       transform: translateX(0);
-      width: 20rem;
+      width: 22rem;
     }
   }
 
