@@ -18,8 +18,8 @@ toolbox.precache(urlsToPrefetch);
 
 var CURRENT_VERSION = 'v1';
 var CACHE_URLS = {
-  'https://api.cosmicjs.com/v1/blog-cb/objects': 1,
-  'https://api.cosmicjs.com/v1/blog-cb/objects?bustcache=true': 2
+  'https://api.cosmicjs.com/v1/blog-cb/object-type/posts': 1,
+  'https://api.cosmicjs.com/v1/blog-cb/object-type/posts?bustcache=true': 2
 };
 
 function cacheOpen (event, response) {

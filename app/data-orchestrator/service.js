@@ -1,7 +1,7 @@
 import Ember from 'ember';
+import config from '../config/environment';
 
 let dataSubscribers = [];
-const BLOG_URL = 'https://api.cosmicjs.com/v1/blog-cb/objects';
 const BUST_CACHE = '?bustcache=true';
 let isBusting = false;
 
@@ -67,7 +67,7 @@ export default Ember.Service.extend({
     if ('serviceWorker' in navigator && navigator.onLine) {
       setTimeout(() => {
         isBusting = true;
-        fetch(`${BLOG_URL}${BUST_CACHE}`)
+        fetch(`${config.BLOG_URL}${BUST_CACHE}`)
           .then(handleFetch)
           .then(json => {
             isBusting = false;
@@ -78,7 +78,7 @@ export default Ember.Service.extend({
           .catch(handleError);
       }, 0);
     }
-    return fetch(BLOG_URL)
+    return fetch(config.BLOG_URL)
       .then(handleFetch)
       .catch(handleError);
   },
@@ -92,7 +92,7 @@ export default Ember.Service.extend({
       if (isBusting) {
         dataSubscribers.push(res);
       } else {
-        fetch(`${BLOG_URL}${BUST_CACHE}`)
+        fetch(`${config.BLOG_URL}${BUST_CACHE}`)
           .then(handleFetch)
           .then(res)
           .catch(handleError);

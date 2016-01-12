@@ -31,6 +31,7 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.locationType = 'hash';
+    ENV.BLOG_URL = 'https://api.cosmicjs.com/v1/blog-cb/object-type/dev-posts';
   }
 
   if (environment === 'test') {
@@ -47,6 +48,7 @@ module.exports = function (environment) {
 
   if (environment === 'production') {
     ENV.locationType = 'hash';
+    ENV.BLOG_URL = 'https://api.cosmicjs.com/v1/blog-cb/object-type/posts';
   }
 
   return ENV;
