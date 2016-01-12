@@ -4,9 +4,9 @@
 <div class="created">
   {{format-date post.created}}
 </div>
-{{#if post.summary.length}}
+{{#if post.content.length}}
     <div class="summary">
-      {{{post.summary}}}
+      {{{post.content}}}
     </div>
 {{else}}
     <div class="no-summary">
