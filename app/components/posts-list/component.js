@@ -15,6 +15,8 @@ export default Ember.Component.extend({
   showFilterPanel: false,
   showingFilterPanel: false,
   showPosts: true,
+  noPostsFound: false,
+  noQuickTipsFound: false,
   didInitAttrs() {
     this.setPosts = this.setPosts.bind(this);
     this.get('dataStore').subscribe(this.setPosts).then(posts => {
@@ -38,14 +40,22 @@ export default Ember.Component.extend({
     this.set('quickTips', posts.filter(this.getQuickTips));
     this.filterChanged();
   },
-  setFilteredPosts(posts) {
+  setFilteredPosts(posts, quickTips) {
     const filteredPosts = posts.toArray().sort(this.sortPosts);
+    const filteredQuickTips = quickTips.toArray().sort(this.sortPosts);
+
     this.set('filteredPosts', filteredPosts);
+    this.set('filteredQuickTips', filteredQuickTips);
     this.set('hasPosts', filteredPosts.length > 0);
     this.set('filteredCount', filteredPosts.length);
+    this.set('noPostsFound', filteredPosts.length === this.get('filteredQuickTips').length);
+    this.set('noQuickTipsFound', !filteredQuickTips.length);
   },
   filterChanged() {
-    this.setFilteredPosts(this.get('filterPosts').filter(this.posts));
+    this.setFilteredPosts(
+      this.get('filterPosts').filter(this.get('posts')),
+      this.get('filterPosts').filter(this.get('quickTips'))
+    );
   },
   sortPosts(prev, next) {
     return new Date(next.get('created')) - new Date(prev.get('created'));

@@ -172,4 +172,19 @@
       margin: 0 1rem;
     }
   }
+
+  .no-posts {
+    padding-left: 0.6rem;
+    margin-top: 1rem;
+    display: none;
+
+    @media(min-width: 550px) {
+      display: block;
+    }
+  }
+
+  .no-quick-tips {
+    padding-left: 0.25rem;
+    margin-top: 1rem;
+  }
 }
