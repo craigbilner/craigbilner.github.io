@@ -40,42 +40,19 @@ export default Ember.Component.extend({
     this.set('quickTips', posts.filter(this.getQuickTips));
     this.filterChanged();
   },
-  getSeqPost(fps, indx, step) {
-    if ((indx + step === -1) || (indx + step === fps.length)) {
-      return;
-    }
-
-    const seqPost = fps.objectAt(indx + step);
-    if (seqPost.get('category') === 'qt') {
-      return this.getSeqPost(fps, indx + step, step);
-    }
-
-    return seqPost;
-  },
   setFilteredPosts(posts, quickTips) {
-    const filteredPosts = posts.toArray().sort(this.sortPosts);
-    const filteredQuickTips = quickTips.toArray().sort(this.sortPosts);
-
-    filteredPosts.forEach((post, indx) => {
-      post.set('prevPost', this.getSeqPost(filteredPosts, indx, -1));
-      post.set('nextPost', this.getSeqPost(filteredPosts, indx, 1));
-    });
-
-    this.set('filteredPosts', filteredPosts);
-    this.set('filteredQuickTips', filteredQuickTips);
-    this.set('hasPosts', filteredPosts.length > 0);
-    this.set('filteredCount', filteredPosts.length);
-    this.set('noPostsFound', filteredPosts.length === this.get('filteredQuickTips').length);
-    this.set('noQuickTipsFound', !filteredQuickTips.length);
+    this.set('filteredPosts', posts);
+    this.set('filteredQuickTips', quickTips);
+    this.set('hasPosts', posts.length > 0);
+    this.set('filteredCount', posts.length);
+    this.set('noPostsFound', posts.length === quickTips.length);
+    this.set('noQuickTipsFound', !quickTips.length);
   },
   filterChanged() {
     this.setFilteredPosts(
       this.get('filterPosts').filter(this.get('posts')),
       this.get('filterPosts').filter(this.get('quickTips'))
     );
-  },
-  sortPosts(prev, next) {
-    return new Date(next.get('created')) - new Date(prev.get('created'));
   },
   togglePanel(state) {
     this.set('showFilterPanel', state);

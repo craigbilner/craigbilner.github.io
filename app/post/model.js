@@ -9,5 +9,6 @@ export default DS.Model.extend({
   summary: DS.attr('string'),
   tags: DS.attr('string'),
   category: DS.attr('string'),
-  isSelected: DS.attr('boolean')
+  prevPost: DS.attr(),
+  nextPost: DS.attr()
 });

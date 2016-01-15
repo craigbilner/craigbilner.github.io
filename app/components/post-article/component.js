@@ -7,6 +7,6 @@ export default Ember.Component.extend({
   didReceiveAttrs() {
     scrollTo(0, 0);
 
-    this.set('hasLinks', this.get('post').get('prevPost') || this.get('post').get('nextPost'));
+    this.set('hasLinks', !!(this.get('post').prevPost || this.get('post').nextPost));
   }
 });
