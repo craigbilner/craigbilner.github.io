@@ -40,9 +40,26 @@ export default Ember.Component.extend({
     this.set('quickTips', posts.filter(this.getQuickTips));
     this.filterChanged();
   },
+  getSeqPost(fps, indx, step) {
+    if ((indx + step === -1) || (indx + step === fps.length)) {
+      return;
+    }
+
+    const seqPost = fps.objectAt(indx + step);
+    if (seqPost.get('category') === 'qt') {
+      return this.getSeqPost(fps, indx + step, step);
+    }
+
+    return seqPost;
+  },
   setFilteredPosts(posts, quickTips) {
     const filteredPosts = posts.toArray().sort(this.sortPosts);
     const filteredQuickTips = quickTips.toArray().sort(this.sortPosts);
+
+    filteredPosts.forEach((post, indx) => {
+      post.set('prevPost', this.getSeqPost(filteredPosts, indx, -1));
+      post.set('nextPost', this.getSeqPost(filteredPosts, indx, 1));
+    });
 
     this.set('filteredPosts', filteredPosts);
     this.set('filteredQuickTips', filteredQuickTips);

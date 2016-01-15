@@ -3,7 +3,23 @@
         <h1>{{post.title}}</h1>
         <time datetime="{{post.created}}">{{format-date post.created}}</time>
     </div>
-    <div>
+    <div class="post-content">
       {{{post.content}}}
     </div>
 </section>
+{{#if hasLinks}}
+    <nav class="nav-links">
+      {{#if post.prevPost.title}}
+          <div class="post-link prev-post">
+              <span class="nav-text">&#8678; previous</span>
+            {{#link-to "post" post.prevPost}}{{post.prevPost.title}}{{/link-to}}
+          </div>
+      {{/if}}
+      {{#if post.nextPost.title}}
+          <div class="post-link next-post">
+              <span class="nav-text">&#8680; next</span>
+            {{#link-to "post" post.nextPost}}{{post.nextPost.title}}{{/link-to}}
+          </div>
+      {{/if}}
+    </nav>
+{{/if}}

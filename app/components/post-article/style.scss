@@ -7,6 +7,11 @@
     border-bottom: 1px solid $colour-grey;
   }
 
+  .post-content {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $colour-grey;
+  }
+
   time {
     color: $colour-grey-text;
   }
@@ -22,5 +27,22 @@
 
   div {
     line-height: 1.5rem;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-flow: column;
+    height: 8rem;
+    justify-content: space-between;
+  }
+
+  .nav-text {
+    color: $colour-secondary;
+  }
+
+  .post-link {
+    display: flex;
+    flex-flow: column;
+    padding: 0 1rem;
   }
 }
