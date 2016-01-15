@@ -18,10 +18,8 @@ export default Ember.Component.extend({
   noPostsFound: false,
   noQuickTipsFound: false,
   didInitAttrs() {
-    this.setPosts(this.model);
-
     this.setPosts = this.setPosts.bind(this);
-    this.get('dataStore').subscribe(this.setPosts);
+    this.get('dataStore').subscribe(this.setPosts).then(posts => this.setPosts(posts));
 
     this.filterChanged = this.filterChanged.bind(this);
     this.get('filterPosts').subscribe(this.filterChanged);
