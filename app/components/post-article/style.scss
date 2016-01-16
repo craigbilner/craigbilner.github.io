@@ -30,6 +30,30 @@
     line-height: 1.5rem;
   }
 
+  a {
+    color: $colour-anchor;
+    font-weight: bold;
+  }
+
+  .quote {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    flex-flow: column;
+    border-right: 5px solid $colour-grey;
+    padding-right: 10px;
+  }
+
+  q {
+    color: $colour-grey-text;
+    margin: 1rem 0;
+  }
+
+  .author {
+    color: $colour-grey-text;
+    font-style: italic;
+  }
+
   .nav-links {
     display: flex;
     flex-flow: column;
