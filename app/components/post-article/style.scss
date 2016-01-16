@@ -54,6 +54,20 @@
     font-style: italic;
   }
 
+  ul {
+    margin-left: 1rem;
+  }
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  code {
+    color: $colour-secondary;
+    background-color: $colour-grey-text-light;
+    padding: 0.25rem;
+  }
+
   .nav-links {
     display: flex;
     flex-flow: column;
