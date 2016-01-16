@@ -17,14 +17,14 @@ urlsToPrefetch.forEach(function (url) {
 toolbox.precache(urlsToPrefetch);
 
 var CURRENT_VERSION = 'v2';
-var BLOG_POSTS = 'https://api.cosmicjs.com/v1/blog-cb/object-type/posts';
+var OBJECT_TYPE = 'dev-posts';
+var BLOG_POSTS = 'https://api.cosmicjs.com/v1/blog-cb/object-type/' + OBJECT_TYPE;
 
-var CACHE_URLS = {
-  'https://api.cosmicjs.com/v1/blog-cb/object-type/posts?bustcache=true': 2
-};
+var CACHE_URLS = {};
 CACHE_URLS[BLOG_POSTS] = 1;
+CACHE_URLS[BLOG_POSTS + '?bustcache=true'] = 2;
 
-function cacheOpen (event, response) {
+function cacheOpen(event, response) {
   return function (cache) {
     cache
       .put(event.request, response.clone())
@@ -35,7 +35,7 @@ function cacheOpen (event, response) {
   }
 }
 
-function fetchSuccess (event) {
+function fetchSuccess(event) {
   return function (response) {
     // console.info('fetch success', event.request.url);
     return caches
@@ -44,7 +44,7 @@ function fetchSuccess (event) {
   }
 }
 
-function noCache (event) {
+function noCache(event) {
   return function () {
     console.info('no cache', event.request.url);
     return fetch(event.request)
@@ -52,7 +52,7 @@ function noCache (event) {
   }
 }
 
-function checkCacheResponse (response) {
+function checkCacheResponse(response) {
   if (!response) {
     console.info('no cache response');
     throw new Error();
@@ -72,7 +72,7 @@ this.addEventListener('fetch', function (event) {
         .match(event.request)
         .then(checkCacheResponse)
         .catch(noCache(event))
-        .catch(function noCacheFail () {
+        .catch(function noCacheFail() {
           console.error('no cache fail');
         })
     );
