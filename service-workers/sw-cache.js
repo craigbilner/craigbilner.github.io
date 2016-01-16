@@ -16,7 +16,7 @@ urlsToPrefetch.forEach(function (url) {
 });
 toolbox.precache(urlsToPrefetch);
 
-var CURRENT_VERSION = 'v1';
+var CURRENT_VERSION = 'v2';
 var CACHE_URLS = {
   'https://api.cosmicjs.com/v1/blog-cb/object-type/posts': 1,
   'https://api.cosmicjs.com/v1/blog-cb/object-type/posts?bustcache=true': 2
