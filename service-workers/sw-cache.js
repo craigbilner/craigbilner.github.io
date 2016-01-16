@@ -17,7 +17,7 @@ urlsToPrefetch.forEach(function (url) {
 toolbox.precache(urlsToPrefetch);
 
 var CURRENT_VERSION = 'v2';
-var OBJECT_TYPE = 'dev-posts';
+var OBJECT_TYPE = 'posts';
 var BLOG_POSTS = 'https://api.cosmicjs.com/v1/blog-cb/object-type/' + OBJECT_TYPE;
 
 var CACHE_URLS = {};
