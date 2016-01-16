@@ -32,10 +32,15 @@ export default Ember.Component.extend({
   getQuickTips(post) {
     return post.get('category') === 'qt';
   },
+  sortPosts(prev, next) {
+    return new Date(next.get('created')) - new Date(prev.get('created'));
+  },
   setPosts(posts) {
-    this.set('posts', posts);
-    this.set('totalCount', posts.get('length'));
-    this.set('quickTips', posts.filter(this.getQuickTips));
+    const sortedPosts = posts.toArray().sort(this.sortPosts);
+
+    this.set('posts', sortedPosts);
+    this.set('totalCount', sortedPosts.length);
+    this.set('quickTips', sortedPosts.filter(this.getQuickTips));
     this.filterChanged();
   },
   setFilteredPosts(posts, quickTips) {
