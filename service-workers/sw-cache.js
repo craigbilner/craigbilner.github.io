@@ -17,10 +17,12 @@ urlsToPrefetch.forEach(function (url) {
 toolbox.precache(urlsToPrefetch);
 
 var CURRENT_VERSION = 'v2';
+var BLOG_POSTS = 'https://api.cosmicjs.com/v1/blog-cb/object-type/posts';
+
 var CACHE_URLS = {
-  'https://api.cosmicjs.com/v1/blog-cb/object-type/posts': 1,
   'https://api.cosmicjs.com/v1/blog-cb/object-type/posts?bustcache=true': 2
 };
+CACHE_URLS[BLOG_POSTS] = 1;
 
 function cacheOpen (event, response) {
   return function (cache) {
@@ -75,7 +77,7 @@ this.addEventListener('fetch', function (event) {
         })
     );
   } else if (navigator.onLine) {
-    var bustRequest = new Request('https://api.cosmicjs.com/v1/blog-cb/objects');
+    var bustRequest = new Request(BLOG_POSTS);
     fetch(bustRequest).then(fetchSuccess({
       request: bustRequest
     }));
