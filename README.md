@@ -1,5 +1,7 @@
 # blog to learn Ember and then to write things in
 
+[read my musings here](https://craigbilner.github.io/)
+
 ## tech stack
 
 * Ember 2 with pods (no controllers) and a pub/sub thing
