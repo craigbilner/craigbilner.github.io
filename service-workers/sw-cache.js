@@ -1,5 +1,8 @@
 importScripts('sw-toolbox.js');
 
+var CURRENT_VERSION = 'v3';
+toolbox.options.cache.name = CURRENT_VERSION;
+
 toolbox.router.any('/', toolbox.networkFirst);
 
 var urlsToPrefetch = [
@@ -16,8 +19,6 @@ urlsToPrefetch.forEach(function (url) {
 });
 toolbox.precache(urlsToPrefetch);
 
-var CURRENT_VERSION = 'v3';
-toolbox.options.cache.name = CURRENT_VERSION;
 var OBJECT_TYPE = 'posts';
 var BLOG_POSTS = 'https://api.cosmicjs.com/v1/blog-cb/object-type/' + OBJECT_TYPE;
 

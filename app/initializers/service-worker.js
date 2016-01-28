@@ -10,6 +10,12 @@ export function initialize() {
   } else {
     console.warn('service worker not supported');
   }
+
+  //navigator.serviceWorker.getRegistrations().then(function (registrations) {
+  //  registrations.forEach(function (registration) {
+  //    registration.unregister()
+  //  })
+  //});
 }
 
 export default {
