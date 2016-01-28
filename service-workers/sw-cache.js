@@ -1,6 +1,6 @@
 importScripts('sw-toolbox.js');
 
-var CURRENT_VERSION = 'v4';
+var CURRENT_VERSION = 'v5';
 toolbox.options.cache.name = CURRENT_VERSION;
 
 toolbox.router.any('/', toolbox.networkFirst);
