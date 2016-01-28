@@ -89,6 +89,7 @@ this.addEventListener('activate', function (event) {
     caches.keys().then(function (keyList) {
       return Promise.all(keyList.map(function (key) {
         if (key !== CURRENT_VERSION) {
+          console.info('deleting', key);
           return caches.delete(key);
         }
       }));
