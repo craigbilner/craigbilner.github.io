@@ -49,6 +49,10 @@
     color: $colour-grey-text;
   }
 
+  .summary {
+    line-height: 1.5rem;
+  }
+
   .summary, .no-summary {
     margin: 1rem 0;
   }
@@ -57,7 +61,9 @@
     font-style: italic;
   }
 
-  .summary p:after {
-    content: "...";
+  code {
+    color: $colour-secondary;
+    background-color: $colour-grey-text-light;
+    padding: 0.25rem;
   }
 }
