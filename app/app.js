@@ -13,6 +13,6 @@ App = Ember.Application.extend({
   Resolver
 });
 
-loadInitializers(App, config.modulePrefix, 'service-worker');
+loadInitializers(App, config.modulePrefix, 'service-worker', 'history');
 
 export default App;
